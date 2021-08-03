@@ -4,9 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [fullName, setName] = useState('');
+  const [pronouns, setPronouns] = useState('');
+  const [avatar_link, setAvatarLink] = useState('');
+
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
-
   const registerUser = (event) => {
     event.preventDefault();
 
@@ -15,6 +18,10 @@ function RegisterForm() {
       payload: {
         username: username,
         password: password,
+        full_name: fullName,
+        pronouns: pronouns,
+        avatar_link: avatar_link,
+        role: true
       },
     });
   }; // end registerUser
@@ -48,6 +55,42 @@ function RegisterForm() {
             value={password}
             required
             onChange={(event) => setPassword(event.target.value)}
+          />
+        </label>
+      </div>
+      <div>
+        <label htmlFor="fullName">
+          Full Name:
+          <input
+            type="text"
+            name="fullName"
+            value={fullName}
+            required
+            onChange={(event) => setName(event.target.value)}
+          />
+        </label>
+      </div>
+      <div>
+        <label htmlFor="pronouns">
+          Pronouns:
+          <input
+            type="text"
+            name="pronouns"
+            value={pronouns}
+            required
+            onChange={(event) => setPronouns(event.target.value)}
+          />
+        </label>
+      </div>
+      <div>
+        <label htmlFor="avatar_link">
+          Profile Picture url:
+          <input
+            type="text"
+            name="avatar_link"
+            value={avatar_link}
+            required
+            onChange={(event) => setAvatarLink(event.target.value)}
           />
         </label>
       </div>
