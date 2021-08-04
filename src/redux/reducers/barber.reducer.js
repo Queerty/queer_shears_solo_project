@@ -33,7 +33,17 @@ const newBarber = (
   }
 };
 
+const barberProfile = (state = {}, action) => {
+  switch (action.type) {
+    case 'SET_BARBER_PROFILE':
+      return action.payload
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   barbers,
   newBarber,
+  barberProfile
 });

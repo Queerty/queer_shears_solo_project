@@ -2,8 +2,9 @@ import { takeEvery, put } from "redux-saga/effects";
 import axios from "axios";
 
 function* barberSaga() {
-  yield takeEvery("GET_BARBERS", fetchAllBarbers);
+  yield takeEvery("FETCH_BARBERS", fetchAllBarbers);
   yield takeEvery("POST_BARBER", addBarber);
+  yield takeEvery("GET_BARBER_PROFILE", fetchBarberProfile);
 //   yield takeEvery("DELETE_BARBER", deleteBarber);
 }
 
@@ -15,6 +16,11 @@ function* fetchAllBarbers() {
   } catch {
     console.log("get all barbers error");
   }
+}
+
+function* fetchBarberProfile(action){
+  const barberProfileResponse = yield axios.get(`/api/barber/profile/${action.payload.barberId}`);
+  yield put ({type : 'SET_BARBER_DETAILS', payload: barberProfileResponse.data});
 }
 
 function* addBarber(action) {

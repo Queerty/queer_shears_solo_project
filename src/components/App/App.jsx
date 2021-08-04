@@ -22,6 +22,8 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import AddBarberForm from '../AddBarber/AddBarber';
 
 import './App.css';
+import BarberProfile from '../BarberProfile/BarberProfile';
+import BarberList from '../FindBarber/FindBarber';
 
 function App() {
   const dispatch = useDispatch();
@@ -47,13 +49,33 @@ function App() {
             <AboutPage />
           </Route>
           <Route
-            //shows baber page at all times
+            // shows AboutPage at all times (logged in or not)
             exact
             path="/barber"
+          >
+            <BarberList />
+          </Route>
+          <Route
+            //shows baber page at all times
+            exact
+            path="/AddBarber"
            >
             <AddBarberForm/> 
            </Route>
-          
+           <Route
+            //shows baber page at all times
+            exact
+            path="/barber/profile/:id"
+           >
+            <BarberProfile/> 
+           </Route>
+           {/* <Route
+            //shows baber page at all times
+            exact
+            path="/barber/profile/"
+           >
+            <FindBarber/> 
+           </Route> */}
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
