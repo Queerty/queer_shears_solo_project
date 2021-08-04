@@ -65,7 +65,7 @@ function App() {
            <Route
             //shows baber page at all times
             exact
-            path="/barber/profile/:id"
+            path="/profile/:id"
            >
             <BarberProfile/> 
            </Route>

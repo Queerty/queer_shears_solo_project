@@ -4,7 +4,7 @@ import { useHistory, useParams } from 'react-router-dom';
 
 function BarberProfile() {
 
-    const barber = useSelector(store => store.barbers);
+    const barber = useSelector(store => store.barbers.barberProfile);
     const history = useHistory();
     const dispatch = useDispatch();
     const params = useParams();
@@ -23,7 +23,7 @@ function BarberProfile() {
 
     return(
         <>
-        <button onClick={() => history.push('/')}>Back to Home</button>
+        <button onClick={() => history.push('/barber')}>Back to List</button>
         <h2>{barber.full_name}</h2>
         <p> {barber.pronouns}</p>
         <p> {barber.phone}</p>
@@ -31,7 +31,7 @@ function BarberProfile() {
         <p> {barber.facebook}</p>
         <p> {barber.instagram}</p>
         <p> {barber.address}</p>
-        <img src={barber.avatar_link}/>
+        <img width="400px" src={barber.avatar_link}/>
 
         </>
     )

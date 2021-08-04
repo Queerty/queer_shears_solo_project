@@ -26,7 +26,12 @@ function BarberList() {
                 return (
                     <div key={barber.id}>
                         <h3>{barber.full_name}</h3>
+                        <h4>{barber.pronouns}</h4>
                         <img width="300px" src={barber.avatar_link} onClick={() => onBarberProfile(barber.id)}/>
+                        <p>Phone: {barber.phone}</p>
+                        <p>Website: {barber.website}</p>
+                        <p>Socials:</p>
+                        <p>Address: {barber.address}</p>
                         </div>
                 )
             })}
