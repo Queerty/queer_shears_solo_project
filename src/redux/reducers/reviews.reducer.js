@@ -11,7 +11,7 @@ const reviews = (state = [], action) => {
 
 
 
-  const barberReviews = (state = {}, action) => {
+  const barberReviews = (state = [], action) => {
     switch (action.type) {
       case 'SET_BARBER_REVIEWS':
         return action.payload

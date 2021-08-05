@@ -42,22 +42,27 @@ router.post("/", (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-  let query = `
-    SELECT barbers."full_name", barbers."pronouns", reviews."rating", reviews."review", "user"."id" FROM barbers
-    JOIN reviews ON reviews."barber_id" = barbers.id
-    JOIN "user" ON "user".id = reviews.user_id
-    WHERE barbers.id = 18
-    GROUP BY barbers.full_name, barbers.pronouns, reviews."rating", reviews."review", "user".id`;
-
-  pool
-    .query(query)
-    .then((result) => {
-      res.send(result.rows);
-    })
-    .catch((err) => {
+  try {
+  // let response = await pool.query(`
+  //   SELECT barbers."full_name", barbers."pronouns", reviews."rating", reviews."review", "user"."id" 
+  //   FROM barbers
+  //   JOIN reviews ON reviews."barber_id" = barbers.id
+  //   JOIN "user" ON "user".id = reviews.user_id
+  //   GROUP BY barbers.full_name, barbers.pronouns, reviews."rating", reviews."review", "user".id
+  //   WHERE reviews."barber_id" = $1;`, [req.params.id]);
+  //     res.send(response.rows);
+  let response = await pool.query(`
+  SELECT barbers."full_name", barbers."pronouns", reviews."rating", reviews."review" FROM barbers
+  JOIN reviews ON reviews."barber_id" = barbers.id
+  WHERE barbers.id= $1
+  GROUP BY barbers.full_name, barbers.pronouns, reviews."rating", reviews."review";  
+    `, [req.params.id]);
+      res.send(response.rows);
+    }
+    catch(err) {
       console.log("ERROR: Getting barber reviews", err);
       res.sendStatus(500);
-    });
+    };
 });
 
 module.exports = router;

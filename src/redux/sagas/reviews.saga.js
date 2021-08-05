@@ -19,7 +19,7 @@ function* fetchAllReviews() {
   }
   
   function* fetchBarberReviews(action){
-    const barberReviewsResponse = yield axios.get(`/api/reviews/${action.payload.barberId}`);
+    const barberReviewsResponse = yield axios.get(`/api/reviews/${action.payload}`);
     yield put ({type : 'SET_BARBER_REVIEWS', payload: barberReviewsResponse.data});
   }
 

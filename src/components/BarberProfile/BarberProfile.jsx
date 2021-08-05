@@ -1,3 +1,5 @@
+import { Box, Typography } from '@material-ui/core';
+import Rating from '@material-ui/lab/Rating';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
@@ -18,10 +20,19 @@ function BarberProfile() {
             payload: {
                 barberId: params.id
             }
-            
         })
     }, [params.id]);
+console.log(barberReview,"@@@@@@()*#@)(&%)(#!&%)(!&()@#*)(*#@()_*#@(_%BARBER REVIEW");
+// const stars = barberReview.rating;
 
+//     function averageReview(stars){ for(each of stars){
+//         sum = sum + stars[each]
+//         return sum
+
+//     }
+//     console.log("average review:", averageReview);
+
+//     }
 
    const handleNext = () => {
     event.preventDefault();
@@ -41,17 +52,27 @@ function BarberProfile() {
         <p> {barber.facebook}</p>
         <p> {barber.instagram}</p>
         <p> {barber.address}</p>
+        <img width="400px" src={barber.avatar_link}/>
+
+        <h2>Reviews for {barber.full_name}</h2>        
+        <button type="button" onClick={handleNext} >+ Review</button>
+
         <ul>
-{/* {barberReview && barberReview.map(response => (
+{barberReview && barberReview.map(response => (
     <li key={response.id}>
-        {response.rating} stars 
-        review: {response.review}
+        Date: {response.date}
+        review: {response.review} 
+        <Box component="fieldset" mb={3} borderColor="transparent">
+        <Typography component="legend">Rating for {barber.full_name}</Typography>
+        <Rating
+          name="simple-controlled"
+          value={response.rating}
+        />
+      </Box>
     </li>
-))} */}
+))}
 </ul>
 
-        <img width="400px" src={barber.avatar_link}/>
-        <button type="button" onClick={handleNext} >Add Review</button>
         </>
     )
 }

@@ -21,6 +21,7 @@ function* fetchAllBarbers() {
 function* fetchBarberProfile(action){
   const barberProfileResponse = yield axios.get(`/api/barber/profile/${action.payload.barberId}`);
   yield put ({type : 'SET_BARBER_PROFILE', payload: barberProfileResponse.data});
+  yield put ({ type: 'GET_BARBER_REVIEWS', payload: action.payload.barberId})
 }
 
 function* addBarber(action) {

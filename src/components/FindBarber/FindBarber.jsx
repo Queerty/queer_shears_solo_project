@@ -16,7 +16,7 @@ function BarberList() {
     const history = useHistory();
     const onBarberProfile = (barberId) => {
         console.log('Clicked barber with id:', barberId);
-        dispatch({ type: 'GET_BARBER_REVIEWS', payload: Number(barberId)})
+        dispatch({ type: 'GET_BARBER_REVIEWS', payload: barberId})
         history.push(`/profile/${barberId}`); //req.params.id
     }
     console.log("This is log barbers in barber list***************************",barbers);
