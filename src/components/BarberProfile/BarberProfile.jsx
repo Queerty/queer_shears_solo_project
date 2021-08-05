@@ -8,8 +8,8 @@ function BarberProfile() {
     const history = useHistory();
     const dispatch = useDispatch();
     const params = useParams();
+    const barberReview = useSelector(store => store.reviews.barberReviews);
 
-    console.log("******************************", barber);
 
     //Fetch barber data on page load
     useEffect(() => {
@@ -18,12 +18,22 @@ function BarberProfile() {
             payload: {
                 barberId: params.id
             }
+            
         })
     }, [params.id]);
+
+
+   const handleNext = () => {
+    event.preventDefault();
+   
+    history.push(`/AddReview`);
+  };
+  
 
     return(
         <>
         <button onClick={() => history.push('/barber')}>Back to List</button>
+        <h1>{barber.id}</h1>
         <h2>{barber.full_name}</h2>
         <p> {barber.pronouns}</p>
         <p> {barber.phone}</p>
@@ -31,8 +41,17 @@ function BarberProfile() {
         <p> {barber.facebook}</p>
         <p> {barber.instagram}</p>
         <p> {barber.address}</p>
-        <img width="400px" src={barber.avatar_link}/>
+        <ul>
+{/* {barberReview && barberReview.map(response => (
+    <li key={response.id}>
+        {response.rating} stars 
+        review: {response.review}
+    </li>
+))} */}
+</ul>
 
+        <img width="400px" src={barber.avatar_link}/>
+        <button type="button" onClick={handleNext} >Add Review</button>
         </>
     )
 }

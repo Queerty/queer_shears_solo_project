@@ -25,7 +25,7 @@ function* fetchBarberProfile(action){
 
 function* addBarber(action) {
   yield axios.post("api/barber", action.payload);
-  yield put({ type: "GET_BARBERS" });
+  yield put({ type: "FETCH_BARBERS" });
 }
 
 // function* deleteBarber(action) {

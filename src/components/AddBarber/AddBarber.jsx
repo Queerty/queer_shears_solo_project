@@ -8,9 +8,11 @@ import FormLabel from "@material-ui/core/FormLabel";
 import { FormGroup } from "@material-ui/core";
 import { Radio, RadioGroup } from "@material-ui/core";
 import { Checkbox } from "@material-ui/core";
+import { useHistory } from "react-router";
 
 function AddBarberForm() {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   //material UI checkboxes
   // const [checked, setChecked] = React.useState(true);
@@ -102,8 +104,7 @@ function AddBarberForm() {
       default:
         break;
     }
-    // setSpecialties({ ...specialties, [event.target.name]: event.target.checked });
-    // setBarber({...barber, specialties: specialties})
+   
   };
 
   const handleSubmit = () => {
@@ -127,6 +128,9 @@ function AddBarberForm() {
       avatar_link: "",
       role: "",
     });
+
+    history.push(`/ConfirmationAdd`);
+
   };
   return (
     <form className="formPanel">
@@ -365,21 +369,27 @@ function AddBarberForm() {
           />
         </label>
       </div>
-      {/* <div>
+      <div>
       <FormControl component="fieldset">
       <FormLabel component="legend">User Role:</FormLabel>
       <RadioGroup aria-label="position" row>
       <FormControlLabel
           value="client"
           control={<Radio/>} label="I am a client of this stylist/barber"
+          onChange={(event) =>
+            setBarber({ ...barber, role: event.target.value })
+          }
         />
       <FormControlLabel
           value="barber"
           control={<Radio/>} label="I am this stylist/barber"
+          onChange={(event) =>
+            setBarber({ ...barber, role: event.target.value })
+          }
         />
          </RadioGroup>
     </FormControl>
-      </div> */}
+      </div>
       <div>
         <input
           className="btn"

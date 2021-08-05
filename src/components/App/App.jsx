@@ -20,10 +20,12 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import AddBarberForm from '../AddBarber/AddBarber';
+import ReviewPage from '../ReviewsPage/ReviewsPage';
 
 import './App.css';
 import BarberProfile from '../BarberProfile/BarberProfile';
 import BarberList from '../FindBarber/FindBarber';
+import ConfirmationAdd from '../ConfirmationAdd/ConfirmationAdd';
 
 function App() {
   const dispatch = useDispatch();
@@ -49,18 +51,34 @@ function App() {
             <AboutPage />
           </Route>
           <Route
-            // shows AboutPage at all times (logged in or not)
+            // shows BarberList at all times (logged in or not)
             exact
             path="/barber"
           >
             <BarberList />
           </Route>
+
+          <Route
+            // shows AboutPage at all times (logged in or not)
+            exact
+            path="/AddReview"
+          >
+            <ReviewPage />
+          </Route>
+
           <Route
             //shows baber page at all times
             exact
             path="/AddBarber"
            >
             <AddBarberForm/> 
+           </Route>
+           <Route
+            //shows baber page at all times
+            exact
+            path="/ConfirmationAdd"
+           >
+            <ConfirmationAdd/> 
            </Route>
            <Route
             //shows baber page at all times

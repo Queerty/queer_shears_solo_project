@@ -40,7 +40,7 @@ router.get('/', (req, res) => {
         res.sendStatus(500);
       });
   });
-
+//Get specific barber profile
   router.get('/profile/:id', async (req, res) => {
     try {
       const response = await pool.query(`SELECT * FROM "barbers" WHERE "id"=$1`, [req.params.id]);

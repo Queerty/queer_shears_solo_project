@@ -1,7 +1,3 @@
-import React from 'react';
-import Rating from '@material-ui/lab/Rating';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 
 // This is one of our simplest components
 // It doesn't have local state,
@@ -9,27 +5,15 @@ import Box from '@material-ui/core/Box';
 // or even care what the redux state is'
 
 function AboutPage() {
-  // return (
-  //   <div className="container">
-  //     <div>
-  //       <p>This about page is for anyone to read!</p>
-
-  const [value, setValue] = React.useState(2);
 
   return (
-    <div>
-      <Box component="fieldset" mb={3} borderColor="transparent">
-        <Typography component="legend">Controlled</Typography>
-        <Rating
-          name="simple-controlled"
-          value={value}
-          onChange={(event, newValue) => {
-            setValue(newValue);
-          }}
-        />
-      </Box>
-      </div>
-    // </div>
+   
+<p>Queer Shears is an application for the LGBTQ+ community to connect users to affirming barbers and stylists. Users can browse stylist profiles or leave reviews. Stylists can create profiles in the app making it easy for potential clients to connect with them and see their work.
+
+The LGBTQ+ community has a multitude of ways to present themselves, including the way they choose to cut and/or style their hair. Not all spaces are welcoming to a gender expression that doesn’t fall into a matched feminine or masculine binary. Some spaces welcome expression and feel safe. This app connects the LGBTQ+ community to these safe spaces for their next haircut.
+
+Users must make an account to add favorite barbers to their list and post their reviews. Data from clients and stylists update in a database to provide the most recent and relevant information.
+</p>
   );
 }
 

@@ -7,17 +7,20 @@ function BarberList() {
 
     useEffect(() => {
         dispatch({ type: "FETCH_BARBERS"})
+        dispatch({ type: "FETCH_REVIEWS"})
     }, []);
-
-    
 
     const dispatch = useDispatch();
     const barbers = useSelector(store => store.barbers.barbers);
+    const reviews = useSelector(store => store.reviews.reviews);
     const history = useHistory();
     const onBarberProfile = (barberId) => {
+        console.log('Clicked barber with id:', barberId);
+        dispatch({ type: 'GET_BARBER_REVIEWS', payload: Number(barberId)})
         history.push(`/profile/${barberId}`); //req.params.id
     }
     console.log("This is log barbers in barber list***************************",barbers);
+    console.log("####################This is reviews", reviews);
 
     return (
         <main>
@@ -25,13 +28,14 @@ function BarberList() {
             {barbers.map(barber => {
                 return (
                     <div key={barber.id}>
-                        <h3>{barber.full_name}</h3>
+                        <h3 onClick={() => onBarberProfile(barber.id)}>{barber.full_name}</h3>
                         <h4>{barber.pronouns}</h4>
                         <img width="300px" src={barber.avatar_link} onClick={() => onBarberProfile(barber.id)}/>
                         <p>Phone: {barber.phone}</p>
                         <p>Website: {barber.website}</p>
                         <p>Socials:</p>
                         <p>Address: {barber.address}</p>
+                        
                         </div>
                 )
             })}

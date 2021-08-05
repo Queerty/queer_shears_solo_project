@@ -12,6 +12,7 @@ function UserPage() {
       <p>Your ID is: {user.id}</p>
       <img src={user.avatar_link} width="200px"/>
       <p>{user.full_name}</p>
+      <p>{user.pronouns}</p>
       <LogOutButton className="btn" />
     </div>
   );
