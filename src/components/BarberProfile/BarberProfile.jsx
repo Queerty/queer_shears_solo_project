@@ -11,6 +11,7 @@ function BarberProfile() {
     const dispatch = useDispatch();
     const params = useParams();
     const barberReview = useSelector(store => store.reviews.barberReviews);
+    const user = useSelector((store) => store.user);
 
 
     //Fetch barber data on page load
@@ -39,8 +40,26 @@ console.log(barberReview,"@@@@@@()*#@)(&%)(#!&%)(!&()@#*)(*#@()_*#@(_%BARBER REV
    
     history.push(`/AddReview`);
   };
-  
 
+  const handleEdit = () => {
+    event.preventDefault();
+
+    history.push(`/AddReview`)
+  }
+
+  const handleDelete = (id) => {
+        if (confirm("Are you sure you want to delete your review?")) {
+            console.log("This is the id from the delete click:", id)
+          dispatch({
+              type: "DELETE_REVIEW",
+              payload: id
+          })
+        } else {
+          
+        }
+       
+      }
+  
     return(
         <>
         <button onClick={() => history.push('/barber')}>Back to List</button>
@@ -53,15 +72,15 @@ console.log(barberReview,"@@@@@@()*#@)(&%)(#!&%)(!&()@#*)(*#@()_*#@(_%BARBER REV
         <p> {barber.instagram}</p>
         <p> {barber.address}</p>
         <img width="400px" src={barber.avatar_link}/>
-
+        
         <h2>Reviews for {barber.full_name}</h2>        
         <button type="button" onClick={handleNext} >+ Review</button>
 
         <ul>
-{barberReview && barberReview.map(response => (
+{barberReview && barberReview.map((response) => (
     <li key={response.id}>
-        Date: {response.date}
         review: {response.review} 
+      
         <Box component="fieldset" mb={3} borderColor="transparent">
         <Typography component="legend">Rating for {barber.full_name}</Typography>
         <Rating
@@ -69,6 +88,11 @@ console.log(barberReview,"@@@@@@()*#@)(&%)(#!&%)(!&()@#*)(*#@()_*#@(_%BARBER REV
           value={response.rating}
         />
       </Box>
+      {user.id==response.user_id && 
+      <>
+      <button onClick={handleEdit}>edit</button>
+      <button onClick={() => handleDelete(response.id)}>delete</button>
+      </>}
     </li>
 ))}
 </ul>

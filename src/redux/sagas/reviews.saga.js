@@ -5,6 +5,7 @@ function* reviewsSaga() {
   yield takeEvery("FETCH_REVIEWS", fetchAllReviews);
   yield takeEvery("POST_REVIEW", addReview);
   yield takeEvery("GET_BARBER_REVIEWS", fetchBarberReviews);
+  yield takeEvery("DELETE_REVIEW", deleteReview);
 //   yield takeEvery("DELETE_BARBER", deleteBarber);
 }
 
@@ -24,8 +25,17 @@ function* fetchAllReviews() {
   }
 
   function* addReview(action) {
-    yield axios.post("api/barber", action.payload);
+    yield axios.post("/api/barber", action.payload);
     yield put({ type: "FETCH_REVIEWS" });
   }
 
+  function* deleteReview(action) {
+    try {
+      console.log("here is the problem: action.payload", action.payload)
+      yield axios.delete(`/api/reviews/${action.payload}`);
+      yield put({ type: "FETCH_REVIEWS" });
+    } catch {
+      console.log("Error when deleting review");
+    }
+  }
   export default reviewsSaga;

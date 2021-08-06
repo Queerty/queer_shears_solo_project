@@ -52,10 +52,10 @@ router.get("/:id", async (req, res) => {
   //   WHERE reviews."barber_id" = $1;`, [req.params.id]);
   //     res.send(response.rows);
   let response = await pool.query(`
-  SELECT barbers."full_name", barbers."pronouns", reviews."rating", reviews."review" FROM barbers
+  SELECT barbers."full_name", barbers."pronouns", reviews."rating", reviews."review", reviews."user_id", reviews."id" FROM barbers
   JOIN reviews ON reviews."barber_id" = barbers.id
   WHERE barbers.id= $1
-  GROUP BY barbers.full_name, barbers.pronouns, reviews."rating", reviews."review";  
+  GROUP BY barbers.full_name, barbers.pronouns, reviews."rating", reviews."review", reviews."user_id", reviews."id";  
     `, [req.params.id]);
       res.send(response.rows);
     }
@@ -63,6 +63,21 @@ router.get("/:id", async (req, res) => {
       console.log("ERROR: Getting barber reviews", err);
       res.sendStatus(500);
     };
+});
+
+router.delete('/:id',  (req, res) => {
+  const reviewId = req.params.id;
+
+  console.log("IN THE DELETE FUNCTION:", reviewId);
+  const query = `DELETE FROM "reviews"
+                 WHERE "id" = $1;`
+    
+   pool.query(query, [reviewId])
+  .then(results => res.sendStatus(202))
+  .catch(error => {
+    console.log("Error deleting review: ", error);
+    res.sendStatus(500);
+  })
 });
 
 module.exports = router;
