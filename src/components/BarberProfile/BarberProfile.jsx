@@ -54,10 +54,14 @@ console.log(barberReview,"@@@@@@()*#@)(&%)(#!&%)(!&()@#*)(*#@()_*#@(_%BARBER REV
               type: "DELETE_REVIEW",
               payload: id
           })
+          dispatch({ type: 'GET_BARBER_PROFILE', payload:{barberId: params.id}
+        })
+          
+
         } else {
           
         }
-       
+
       }
   
     return(
