@@ -28,7 +28,7 @@ function BarberList() {
             {barbers.map(barber => {
                 return (
                     <div key={barber.id}>
-                        <h3 onClick={() => onBarberProfile(barber.id)}>{barber.full_name}</h3>
+                        <h2 onClick={() => onBarberProfile(barber.id)}>{barber.full_name}</h2>
                         <h4>{barber.pronouns}</h4>
                         <img width="300px" src={barber.avatar_link} onClick={() => onBarberProfile(barber.id)}/>
                         <p>Phone: {barber.phone}</p>
