@@ -14,6 +14,7 @@ function BarberList() {
     const barbers = useSelector(store => store.barbers.barbers);
     const reviews = useSelector(store => store.reviews.reviews);
     const history = useHistory();
+    
     const onBarberProfile = (barberId) => {
         console.log('Clicked barber with id:', barberId);
         dispatch({ type: 'GET_BARBER_REVIEWS', payload: barberId})

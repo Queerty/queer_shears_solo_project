@@ -20,7 +20,18 @@ const reviews = (state = [], action) => {
     }
   }
 
+  const currentReview = (state = [], action) => {
+    switch (action.type) {
+      case 'SET_CURRENT_REVIEW':
+        return action.payload
+      default:
+        return state;
+    }
+  }
+
   export default combineReducers({
    reviews,
-   barberReviews
+   barberReviews,
+   currentReview
+
   });

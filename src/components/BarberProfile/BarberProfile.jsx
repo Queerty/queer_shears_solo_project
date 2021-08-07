@@ -41,10 +41,14 @@ console.log(barberReview,"@@@@@@()*#@)(&%)(#!&%)(!&()@#*)(*#@()_*#@(_%BARBER REV
     history.push(`/AddReview`);
   };
 
-  const handleEdit = () => {
+  const handleEdit = (response) => {
     event.preventDefault();
+    dispatch({
+        type: "SET_CURRENT_REVIEW",
+        payload: {response}
+    })
 
-    history.push(`/AddReview`)
+    history.push(`/reviews/${response.id}`)
   }
 
   const handleDelete = (id) => {
@@ -94,7 +98,7 @@ console.log(barberReview,"@@@@@@()*#@)(&%)(#!&%)(!&()@#*)(*#@()_*#@(_%BARBER REV
       </Box>
       {user.id==response.user_id && 
       <>
-      <button onClick={handleEdit}>edit</button>
+      <button onClick={() => handleEdit(response)}>edit</button>
       <button onClick={() => handleDelete(response.id)}>delete</button>
       </>}
     </li>

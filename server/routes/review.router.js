@@ -80,4 +80,21 @@ router.delete('/:id',  (req, res) => {
   })
 });
 
+router.put('/', (req, res) => {
+
+  const review = req.body;
+console.log(req.body);
+  const query =`
+  UPDATE reviews
+  SET rating = $1, review = $2
+  WHERE id = $3;`;
+  pool.query(query, [review.rating, review.review, String(review.id)])
+  .then(response => {
+    res.sendStatus(200);
+  })
+  .catch(err => {
+    console.log('Error updating review', err);
+  })
+})
+
 module.exports = router;

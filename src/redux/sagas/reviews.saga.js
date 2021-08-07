@@ -6,6 +6,7 @@ function* reviewsSaga() {
   yield takeEvery("POST_REVIEW", addReview);
   yield takeEvery("GET_BARBER_REVIEWS", fetchBarberReviews);
   yield takeEvery("DELETE_REVIEW", deleteReview);
+  yield takeEvery("EDIT_REVIEW", editReview);
 //   yield takeEvery("DELETE_BARBER", deleteBarber);
 }
 
@@ -38,4 +39,13 @@ function* fetchAllReviews() {
       console.log("Error when deleting review");
     }
   }
+
+    function* editReview(action) {
+      try {
+        yield axios.put('api/reviews', action.payload)
+      } catch (error) {
+        console.log('Error editing review');
+      }
+    }
+  
   export default reviewsSaga;

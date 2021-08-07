@@ -26,6 +26,7 @@ import './App.css';
 import BarberProfile from '../BarberProfile/BarberProfile';
 import BarberList from '../FindBarber/FindBarber';
 import ConfirmationAdd from '../ConfirmationAdd/ConfirmationAdd';
+import EditReview from '../EditReview/EditReview';
 
 function App() {
   const dispatch = useDispatch();
@@ -86,6 +87,14 @@ function App() {
             path="/profile/:id"
            >
             <BarberProfile/> 
+           </Route>
+
+           <Route
+            //shows edit review
+            exact
+            path="/reviews/:id"
+           >
+            <EditReview/> 
            </Route>
            {/* <Route
             //shows baber page at all times

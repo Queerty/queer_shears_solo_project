@@ -1,43 +1,32 @@
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { Box, Typography } from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
 
 function EditReview() {
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const params = useParams();
 
-  const review = useSelector(store => store.reviews.editReview);
-  const barber = useSelector(store => store.barbers.barberProfile);
+const dispatch = useDispatch();
+const history = useHistory();
 
-  // get edit movie object on page load:
-  useEffect(() => {
-    
-      dispatch({
-        type: 'GET_BARBER_REVIEW',
-        payload: { reviewId: params.id }
-      });
-    
-  }, [params.id]);
+const currentReview = useSelector(store => store.reviews.currentReview);
+console.log(currentReview, "WHAT IS STORE REVIEW BARBER REVIEWS");
+const [ newRating, setNewRating ] = useState(currentReview.response.rating);
+const [ newReview, setNewReview ] = useState(currentReview.response.review);
+const barber = useSelector(store => store.barbers.barberProfile);
+const user = useSelector(store => store.user)
 
-const saveUpdate = () => {
-    console.log("****************EDIT REVIEW",review);
-    dispatch({
-        type: 'EDIT_REVIEW',
-        payload: review
-    })
-   
-    // history.push('/home')
-}
- 
-
+console.log("CURRENT REVIEW VALUE:", currentReview);
   const updateReview = () => {
+      console.log("LETS FIND OUT WHAT CURRENT REVIEW ID IS:", currentReview)
     dispatch({
-      type: 'UPDATE_EDIT_REVIEW',
-      payload: review
+      type: 'EDIT_REVIEW',
+      payload: {
+        rating: newRating,
+        review: newReview,
+        id: currentReview.response.id
+      }
     });
   }
 
@@ -47,9 +36,8 @@ const saveUpdate = () => {
       <Typography component="legend">Rate your experience with {barber.full_name}</Typography>
       <Rating
         name="simple-controlled"
-        value={review.rating}
-        onChange={(event) => updateReview({ rating: event.target.value})
-        }
+        value={Number(newRating)}
+        onChange={(event) => setNewRating(event.target.value)}
       />
     </Box>
     <img width="300px" src={barber.avatar_link}/>
@@ -57,16 +45,16 @@ const saveUpdate = () => {
       <label> Tell us about your experience: </label>
        
     <textarea
-    value={review.review}
-    onChange={(evt) => updateReview({review: (evt.target.value)})}></textarea>
+    value={newReview}
+    onChange={(event) => setNewReview(event.target.value)}>
+    </textarea>
 <div></div>
-    <button onClick={saveUpdate}>Submit</button>
+    <button onClick={updateReview}>Submit</button>
   </div>
         
   );
 
 }
 
-
-
 export default EditReview;
+
