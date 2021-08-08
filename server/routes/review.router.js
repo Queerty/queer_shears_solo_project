@@ -52,10 +52,10 @@ router.get("/:id", async (req, res) => {
   //   WHERE reviews."barber_id" = $1;`, [req.params.id]);
   //     res.send(response.rows);
   let response = await pool.query(`
-  SELECT barbers."full_name", barbers."pronouns", reviews."rating", reviews."review", reviews."user_id", reviews."id" FROM barbers
+  SELECT barbers."full_name", barbers."pronouns", reviews."rating", reviews."review", reviews."date", reviews."user_id", reviews."id" FROM barbers
   JOIN reviews ON reviews."barber_id" = barbers.id
   WHERE barbers.id= $1
-  GROUP BY barbers.full_name, barbers.pronouns, reviews."rating", reviews."review", reviews."user_id", reviews."id";  
+  GROUP BY barbers.full_name, barbers.pronouns, reviews."rating", reviews."review", reviews."date", reviews."user_id", reviews."id";  
     `, [req.params.id]);
       res.send(response.rows);
     }
@@ -80,6 +80,7 @@ router.delete('/:id',  (req, res) => {
   })
 });
 
+//edit user review
 router.put('/', (req, res) => {
 
   const review = req.body;
@@ -96,5 +97,22 @@ console.log(req.body);
     console.log('Error updating review', err);
   })
 })
+
+router.get("/rating/:id", (req, res) => {
+  console.log("GET average rating");
+  //Get average from table
+  const barber = req.params.id; //not sure if id or barber_id payload for this query needs to be barber
+  const query = (`SELECT AVG(rating)
+  FROM reviews
+  WHERE barber_id = $1;`)
+  pool.query(query, [barber])
+    .then((result) => {
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.log("Error GET avg rating from /api/rating/:id", error);
+      res.sendStatus(500);
+    });
+});
 
 module.exports = router;

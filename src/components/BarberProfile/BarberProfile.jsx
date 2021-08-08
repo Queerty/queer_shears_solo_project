@@ -1,8 +1,14 @@
-import { Box, Typography } from '@material-ui/core';
+import { Avatar, Box, Button, Typography } from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import './BarberProfile.css';
+
 
 function BarberProfile() {
 
@@ -13,6 +19,18 @@ function BarberProfile() {
     const barberReview = useSelector(store => store.reviews.barberReviews);
     const user = useSelector((store) => store.user);
 
+
+    const useStyles = makeStyles((theme) => ({
+      root: {
+        flexGrow: 1,
+      },
+      paper: {
+        padding: theme.spacing(2),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+      },
+    }));
+    const classes = useStyles();
 
     //Fetch barber data on page load
     useEffect(() => {
@@ -67,27 +85,48 @@ console.log(barberReview,"@@@@@@()*#@)(&%)(#!&%)(!&()@#*)(*#@()_*#@(_%BARBER REV
         }
 
       }
+
+      const styleObj = {
+        fontSize: 22,
+        textAlign: "left",
+        padding: "10px",
+        
+    }
   
     return(
         <>
-        <button onClick={() => history.push('/barber')}>Back to List</button>
-        <h1>{barber.id}</h1>
-        <h2>{barber.full_name}</h2>
-        <p> {barber.pronouns}</p>
-        <p> {barber.phone}</p>
-        <p> {barber.website}</p>
-        <p> {barber.facebook}</p>
-        <p> {barber.instagram}</p>
-        <p> {barber.address}</p>
-        <img width="400px" src={barber.avatar_link}/>
-        
+        <main>
+        <Button onClick={() => history.push('/barber')}>Back to List</Button>
+        <h1> Barber Profile/{barber.full_name}</h1>
+        <div className={classes.root}>
+        <Grid container spacing={3}>
+        <Grid item xs={9} justifyContent="center" alignItems="center">
+        <Avatar alt={barber.full_name} className={classes.large} style={{ height: '300px', width: '300px' }} src={barber.avatar_link}/>
+        </Grid>
+          
+        <Grid item xs={9}>
+        {/* <h1>{barber.id}</h1> */}
+        <Paper id="barberName">
+        <Typography align="left">{barber.full_name}</Typography>
+        <Typography align="left">{barber.pronouns}</Typography>
+        <Typography align="left"> {barber.phone}</Typography>
+        <Typography align="left"> {barber.website}</Typography>
+        <Typography align="left"> {barber.facebook}</Typography>
+        <Typography align="left"> {barber.instagram}</Typography>
+        <Typography align="left"> {barber.address}</Typography>
+        </Paper>
+        </Grid>
+       
+        <Grid item xs={12}>
+          <Paper className={classes.paper}>
         <h2>Reviews for {barber.full_name}</h2>        
-        <button type="button" onClick={handleNext} >+ Review</button>
+        <Button type="button" variant="contained" onClick={handleNext} >+ Review</Button>
 
-        <ul>
+        <div>
 {barberReview && barberReview.map((response) => (
-    <li key={response.id}>
-        review: {response.review} 
+   <Paper id="review">
+   <div key={response.id} style={styleObj}>
+       
       
         <Box component="fieldset" mb={3} borderColor="transparent">
         <Typography component="legend">Rating for {barber.full_name}</Typography>
@@ -96,15 +135,22 @@ console.log(barberReview,"@@@@@@()*#@)(&%)(#!&%)(!&()@#*)(*#@()_*#@(_%BARBER REV
           value={response.rating}
         />
       </Box>
+      <div> {response.review}</div>
+      {/* <div> date: {response.date}</div> */}
       {user.id==response.user_id && 
       <>
-      <button onClick={() => handleEdit(response)}>edit</button>
-      <button onClick={() => handleDelete(response.id)}>delete</button>
+      <Button onClick={() => handleEdit(response)}>edit</Button>
+      <Button onClick={() => handleDelete(response.id)}>delete</Button>
       </>}
-    </li>
+    </div>
+    </Paper>
 ))}
-</ul>
-
+</div>
+</Paper>
+</Grid>
+</Grid>
+</div>
+</main>
         </>
     )
 }

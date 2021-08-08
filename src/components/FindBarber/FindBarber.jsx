@@ -1,6 +1,10 @@
+import { Avatar } from '@material-ui/core';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import './FindBarber.css';
+import { makeStyles } from '@material-ui/core/styles';
+
 
 function BarberList() {
 
@@ -15,6 +19,23 @@ function BarberList() {
     const reviews = useSelector(store => store.reviews.reviews);
     const history = useHistory();
     
+//material ui
+const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+    },
+    avatar: {
+        justifyContent: 'center'
+    },
+
+    paper: {
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
+    },
+  }));
+  const classes = useStyles();
+
     const onBarberProfile = (barberId) => {
         console.log('Clicked barber with id:', barberId);
         dispatch({ type: 'GET_BARBER_REVIEWS', payload: barberId})
@@ -31,11 +52,12 @@ function BarberList() {
                     <div key={barber.id}>
                         <h2 onClick={() => onBarberProfile(barber.id)}>{barber.full_name}</h2>
                         <h4>{barber.pronouns}</h4>
-                        <img width="300px" src={barber.avatar_link} onClick={() => onBarberProfile(barber.id)}/>
+                        <Avatar alt={barber.full_name} style={{ height: '300px', width: '300px', alignItems: 'center'}} src={barber.avatar_link} onClick={() => onBarberProfile(barber.id)}/>
                         <p>Phone: {barber.phone}</p>
                         <p>Website: {barber.website}</p>
                         <p>Socials:</p>
                         <p>Address: {barber.address}</p>
+                        <p dispatch></p>
                         
                         </div>
                 )

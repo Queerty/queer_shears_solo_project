@@ -27,6 +27,7 @@ import BarberProfile from '../BarberProfile/BarberProfile';
 import BarberList from '../FindBarber/FindBarber';
 import ConfirmationAdd from '../ConfirmationAdd/ConfirmationAdd';
 import EditReview from '../EditReview/EditReview';
+import Map from '../Map/Map';
 
 function App() {
   const dispatch = useDispatch();
@@ -59,21 +60,20 @@ function App() {
             <BarberList />
           </Route>
 
-          <Route
-            // shows AboutPage at all times (logged in or not)
+          <ProtectedRoute
             exact
             path="/AddReview"
           >
             <ReviewPage />
-          </Route>
+          </ProtectedRoute>
 
-          <Route
+          <ProtectedRoute
             //shows baber page at all times
             exact
             path="/AddBarber"
            >
             <AddBarberForm/> 
-           </Route>
+           </ProtectedRoute>
            <Route
             //shows baber page at all times
             exact
@@ -120,7 +120,7 @@ function App() {
             exact
             path="/info"
           >
-            <InfoPage />
+            <Map />
           </ProtectedRoute>
 
           {/* When a value is supplied for the authRedirect prop the user will

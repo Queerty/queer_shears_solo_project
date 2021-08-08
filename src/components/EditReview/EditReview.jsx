@@ -28,6 +28,8 @@ console.log("CURRENT REVIEW VALUE:", currentReview);
         id: currentReview.response.id
       }
     });
+    history.push(`/profile/${barber.id}`)
+
   }
 
   return (
