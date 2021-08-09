@@ -8,6 +8,7 @@ function* reviewsSaga() {
   yield takeEvery("DELETE_REVIEW", deleteReview);
   yield takeEvery("EDIT_REVIEW", editReview);
   yield takeEvery("FETCH_BARBER_RATING", averageRating);
+  yield takeEvery("FETCH_USER_REVIEWS", userReviews);
 //   yield takeEvery("DELETE_BARBER", deleteBarber);
 }
 
@@ -54,6 +55,11 @@ function* fetchAllReviews() {
         const rating= yield axios.get(`api/reviews/rating/${action.payload.barberId}`)
         yield put ({type : 'SET_BARBER_RATING', payload: rating.data});
         // yield put ({type: 'FETCH_BARBER_RATING', payload: action.payload.barberId });
+    }
+
+    function* userReviews(action) {
+      const userReviews= yield axios.get(`api/reviews/users/${action.payload}`)
+      yield put ({ type: 'SET_USER_REVIEWS', payload: userReviews.data });
     }
   
   export default reviewsSaga;

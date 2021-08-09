@@ -118,7 +118,22 @@ router.get("/rating/:id", (req, res) => {
 });
 
 //this is something for getting the user reviews
-// SELECT * FROM "user"
-// JOIN "reviews" ON "reviews".user_id = "user".id;
+
+
+router.get("/users/:id", (req, res) => {
+  const userId = req.params.id;
+  const query = (`
+  SELECT * FROM "user"
+  JOIN "reviews" ON "reviews".user_id = "user".id
+  WHERE "user".id= $1;`)
+  pool.query(query, [userId])
+  .then((result) => {
+    res.send(result.rows);
+  })
+  .catch((error) => {console.log("this is a user reviews GET error", error);
+  res.sendStatus(500);})
+  })
+
+
 
 module.exports = router;
