@@ -5,6 +5,7 @@ import {useSelector} from 'react-redux';
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
+  const reviews = useSelector((store) => store.reviews.reviews)
   return (
     <div className="container">
       <h1>Your Profile</h1>
@@ -13,6 +14,7 @@ function UserPage() {
       <img src={user.avatar_link} width="200px"/>
       <p>{user.full_name}</p>
       <p>{user.pronouns}</p>
+    <p> reviews[0].rating</p>
       <LogOutButton className="btn" />
     </div>
   );

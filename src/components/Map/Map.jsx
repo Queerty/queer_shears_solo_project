@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import "./Map.css";
 import mapboxgl from '!mapbox-gl'
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
-import turf from 'turf-distance';
+import turf from '@turf/turf';
 
  
 mapboxgl.accessToken ='pk.eyJ1IjoibXBsc2NsZWxhbmQiLCJhIjoiY2tyczY2Y2F5MGdyMzJvcGsyb3llYncyciJ9.42hSsgHKRLTPHnIt0xJYvA'
@@ -14,7 +14,7 @@ function Map(){
 // const [zoom, setZoom] = useState(9);
 
 useEffect(() => {
-    var map = new mapboxgl.Map({
+    const map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/light-v10',
         center: [-93.29528166042374, 44.94925563275068],
@@ -22,7 +22,7 @@ useEffect(() => {
         scrollZoom: false
         });
          
-        var stores = {
+        const stores = {
         'type': 'FeatureCollection',
         'features': [
         {
@@ -163,7 +163,7 @@ useEffect(() => {
         * in miles between the searchResult and the store. Assign the
         * calculated value to a property called `distance`.
         */
-        var options = { units: 'miles' };
+        let options = { units: 'miles' };
         stores.features.forEach(function (store) {
         Object.defineProperty(store.properties, 'distance', {
         value: turf.distance(searchResult, store.geometry, options),

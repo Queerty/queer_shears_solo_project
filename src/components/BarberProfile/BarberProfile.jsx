@@ -18,7 +18,9 @@ function BarberProfile() {
     const params = useParams();
     const barberReview = useSelector(store => store.reviews.barberReviews);
     const user = useSelector((store) => store.user);
+    const rating = useSelector((store) => store.reviews.barberRating);
 
+    console.log(rating, "THIS IS THE AVERAGE RATING I THINK********")
 
     const useStyles = makeStyles((theme) => ({
       root: {
@@ -42,6 +44,15 @@ function BarberProfile() {
         })
     }, [params.id]);
 console.log(barberReview,"@@@@@@()*#@)(&%)(#!&%)(!&()@#*)(*#@()_*#@(_%BARBER REVIEW");
+
+useEffect(() => {
+  dispatch({
+    type: "FETCH_BARBER_RATING",
+    payload: {
+      barberId: params.id
+    }
+  })
+}, [params.id])
 // const stars = barberReview.rating;
 
 //     function averageReview(stars){ for(each of stars){
@@ -100,7 +111,7 @@ console.log(barberReview,"@@@@@@()*#@)(&%)(#!&%)(!&()@#*)(*#@()_*#@(_%BARBER REV
         <h1> Barber Profile/{barber.full_name}</h1>
         <div className={classes.root}>
         <Grid container spacing={3}>
-        <Grid item xs={9} justifyContent="center" alignItems="center">
+        <Grid item xs={9}>
         <Avatar alt={barber.full_name} className={classes.large} style={{ height: '300px', width: '300px' }} src={barber.avatar_link}/>
         </Grid>
           
@@ -114,6 +125,14 @@ console.log(barberReview,"@@@@@@()*#@)(&%)(#!&%)(!&()@#*)(*#@()_*#@(_%BARBER REV
         <Typography align="left"> {barber.facebook}</Typography>
         <Typography align="left"> {barber.instagram}</Typography>
         <Typography align="left"> {barber.address}</Typography>
+        
+        <Box component="fieldset" mb={3} borderColor="transparent">
+       <Typography component="legend"> average user rating:</Typography>
+        <Rating
+          name="barber-avg-rating"
+          value={rating.avg}
+        />
+      </Box>
         </Paper>
         </Grid>
        
@@ -131,11 +150,11 @@ console.log(barberReview,"@@@@@@()*#@)(&%)(#!&%)(!&()@#*)(*#@()_*#@(_%BARBER REV
         <Box component="fieldset" mb={3} borderColor="transparent">
         <Typography component="legend">Rating for {barber.full_name}</Typography>
         <Rating
-          name="simple-controlled"
+          name="barber-rating"
           value={response.rating}
         />
       </Box>
-      <div> {response.review}</div>
+      <div> {response.review} {response.user_id}</div>
       {/* <div> date: {response.date}</div> */}
       {user.id==response.user_id && 
       <>

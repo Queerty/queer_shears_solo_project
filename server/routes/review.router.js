@@ -101,18 +101,24 @@ console.log(req.body);
 router.get("/rating/:id", (req, res) => {
   console.log("GET average rating");
   //Get average from table
-  const barber = req.params.id; //not sure if id or barber_id payload for this query needs to be barber
-  const query = (`SELECT AVG(rating)
+  const barber = req.params.id;
+  console.log(barber, "&^#$*&%THIS IS BARBER ID IN RATING"); //not sure if id or barber_id payload for this query needs to be barber
+  const query = (`
+  SELECT AVG(rating)
   FROM reviews
   WHERE barber_id = $1;`)
   pool.query(query, [barber])
     .then((result) => {
-      res.send(result.rows);
+      res.send(result.rows[0]);
     })
     .catch((error) => {
       console.log("Error GET avg rating from /api/rating/:id", error);
       res.sendStatus(500);
     });
 });
+
+//this is something for getting the user reviews
+// SELECT * FROM "user"
+// JOIN "reviews" ON "reviews".user_id = "user".id;
 
 module.exports = router;

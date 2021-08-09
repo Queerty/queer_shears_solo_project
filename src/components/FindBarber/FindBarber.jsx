@@ -18,6 +18,7 @@ function BarberList() {
     const barbers = useSelector(store => store.barbers.barbers);
     const reviews = useSelector(store => store.reviews.reviews);
     const history = useHistory();
+
     
 //material ui
 const useStyles = makeStyles((theme) => ({
@@ -44,6 +45,11 @@ const useStyles = makeStyles((theme) => ({
     console.log("This is log barbers in barber list***************************",barbers);
     console.log("####################This is reviews", reviews);
 
+
+    // const getRating = (barber.id) => {
+    
+    //         dispatch({type: 'FETCH_BARBER_RATING', payload: barber.id})
+    // }
     return (
         <main>
             <h1>Barber List</h1>
@@ -57,7 +63,8 @@ const useStyles = makeStyles((theme) => ({
                         <p>Website: {barber.website}</p>
                         <p>Socials:</p>
                         <p>Address: {barber.address}</p>
-                        <p dispatch></p>
+                        {/* <p> {getRating(barber.id)}{rating.avg}</p> */}
+                        
                         
                         </div>
                 )
