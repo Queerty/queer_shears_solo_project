@@ -37,6 +37,10 @@ function UserPage() {
         type: "DELETE_REVIEW",
         payload: id,
       });
+      dispatch({ 
+        type: "FETCH_USER_REVIEWS",
+        payload: user.id
+      })
     }
   };
 

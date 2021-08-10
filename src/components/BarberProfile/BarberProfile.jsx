@@ -9,7 +9,6 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import "./BarberProfile.css";
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
-// import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 
 function BarberProfile() {
   const barber = useSelector((store) => store.barbers.barberProfile);
@@ -55,16 +54,6 @@ function BarberProfile() {
       },
     });
   }, [params.id]);
-  // const stars = barberReview.rating;
-
-  //     function averageReview(stars){ for(each of stars){
-  //         sum = sum + stars[each]
-  //         return sum
-
-  //     }
-  //     console.log("average review:", averageReview);
-
-  //     }
 
   const handleNext = () => {
     event.preventDefault();
@@ -103,6 +92,7 @@ function BarberProfile() {
     padding: "10px",
   };
 
+
   return (
     <>
       <main>
@@ -139,6 +129,9 @@ function BarberProfile() {
                   {barber.instagram}
                 </a>
                 <Typography align="left"> {barber.address}</Typography>
+                
+                
+    
 
                 <Box component="fieldset" mb={3} borderColor="transparent">
                   <Typography component="legend">
