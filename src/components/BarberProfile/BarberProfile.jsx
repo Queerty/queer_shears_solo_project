@@ -8,6 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import "./BarberProfile.css";
+// import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 
 function BarberProfile() {
   const barber = useSelector((store) => store.barbers.barberProfile);
@@ -116,6 +117,7 @@ function BarberProfile() {
                 style={{ height: "300px", width: "300px" }}
                 src={barber.avatar_link}
               />
+              
             </Grid>
 
             <Grid item xs={12}>

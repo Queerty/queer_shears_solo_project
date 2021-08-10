@@ -52,4 +52,24 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+router.put('/', (req, res, next) => {
+  
+  console.log("this is req dot body in user router", req.body);
+  const username= req.body.username;
+  const full_name= req.body.full_name;
+  const pronouns= req.body.pronouns;
+  const avatar_link= req.body.avatar_link;
+  const query = `
+  UPDATE "user"
+  SET username=$1, full_name=$2, pronouns=$3, avatar_link=$4
+  WHERE id=$5`;
+  pool.query(query,[username, full_name, pronouns, avatar_link, req.user.id] )
+  .then((response) => {
+    res.sendStatus(200);
+  })
+  .catch((err)=> {
+    console.log('error updating user profile'), err;
+  });
+});
+
 module.exports = router;

@@ -28,6 +28,7 @@ import BarberList from "../FindBarber/FindBarber";
 import ConfirmationAdd from "../ConfirmationAdd/ConfirmationAdd";
 import EditReview from "../EditReview/EditReview";
 import Map from "../Map/Map";
+import EditProfile from "../EditProfile/EditProfile";
 
 function App() {
   const dispatch = useDispatch();
@@ -112,6 +113,13 @@ function App() {
             <UserPage />
           </ProtectedRoute>
 
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/user/edit"
+          >
+            <EditProfile />
+          </ProtectedRoute>
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact

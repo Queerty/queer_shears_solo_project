@@ -38,6 +38,10 @@ function UserPage() {
     }
   };
 
+  const updateProfile = () => {
+    history.push('/user/edit')
+  }
+
   return (
     <div className="container">
       <h1>Your Profile</h1>
@@ -47,8 +51,10 @@ function UserPage() {
         src={user.avatar_link}
         style={{ height: "300px", width: "300px" }}
       />
+      <Button onClick={updateProfile}>edit profile</Button>
       <p>{user.full_name}</p>
       <p>{user.pronouns}</p>
+      <p> My Reviews <b>({userReviews.length})</b></p>
       <div>
         {userReviews && userReviews.length > 0 ? (
           userReviews.map((review) => {
@@ -60,7 +66,7 @@ function UserPage() {
                   <h3>{review.full_name}</h3>
 
                   <h4>{review.review}</h4>
-                  <Button onClick={() => handleEdit(review.review_id)}>
+                  <Button onClick={() => handleEdit(review)}>
                     edit
                   </Button>
                   <Button onClick={() => handleDelete(review.review_id)}>

@@ -1,6 +1,9 @@
 import axios from 'axios';
-import { put, takeLatest } from 'redux-saga/effects';
-
+import { put, takeEvery, takeLatest } from 'redux-saga/effects';
+function* userSaga() {
+  yield takeLatest('FETCH_USER', fetchUser)
+  yield takeEvery('EDIT_PROFILE', editUser);
+}
 // worker Saga: will be fired on "FETCH_USER" actions
 function* fetchUser() {
   try {
@@ -24,8 +27,17 @@ function* fetchUser() {
   }
 }
 
-function* userSaga() {
-  yield takeLatest('FETCH_USER', fetchUser);
+function* editUser(action) {
+  try{
+    console.log(action.payload, "THIS IS ACTION DOT PAYLOAD");
+    yield axios.put('/api/user', action.payload)
+    console.log('in edit user saga');
+    yield put({ type: 'FETCH_USER'});
+  } catch (error) {
+    console.log('error updating user profile at edit user saga', error);
+  }
 }
+
+
 
 export default userSaga;
