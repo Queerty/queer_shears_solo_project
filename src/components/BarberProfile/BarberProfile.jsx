@@ -121,9 +121,9 @@ useEffect(() => {
         <Typography align="left">{barber.full_name}</Typography>
         <Typography align="left">{barber.pronouns}</Typography>
         <Typography align="left"> {barber.phone}</Typography>
-        <Typography align="left"> {barber.website}</Typography>
-        <Typography align="left"> {barber.facebook}</Typography>
-        <Typography align="left"> {barber.instagram}</Typography>
+        <a href={barber.website} align="left"> {barber.website}</a>
+        <a href={barber.facebook} align="left"> {barber.facebook}</a>
+        <a href={barber.instagram} align="left"> {barber.instagram}</a>
         <Typography align="left"> {barber.address}</Typography>
         
         <Box component="fieldset" mb={3} borderColor="transparent">
