@@ -20,21 +20,13 @@ function Nav() {
   return (
     <div className="nav">
       <Link to="/home">
-        <h2 className="nav-title">Queer Shears</h2>
+      <img id="logo" src={'images/logo.png'} width="200px"/>
+
       </Link>
       <div>
         <Link className="navLink" to={loginLinkData.path}>
           {loginLinkData.text}
         </Link>
-
-        {user.id && (
-          <>
-            <Link className="navLink" to="/info">
-              Info Page
-            </Link>
-            <LogOutButton className="navLink" />
-          </>
-        )}
 
         <Link className="navLink" to="/about">
           About
@@ -47,7 +39,20 @@ function Nav() {
         <Link className="navLink" to="/AddBarber">
           Add Barber
         </Link>
+{user.id && (
+  <>
+        <LogOutButton className="navLink" />
+</>
+)}
       </div>
+
+        {/* {user.id && (
+          <>
+            <Link className="navLink" to="/info">
+              Info Page
+            </Link>
+          </>
+        )} */}
     </div>
   );
 }

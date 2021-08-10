@@ -112,8 +112,8 @@ function BarberProfile() {
           <Grid container spacing={3}>
             <Grid item xs={9}>
               <Avatar
+                className="avatar"
                 alt={barber.full_name}
-                className={classes.large}
                 style={{ height: "300px", width: "300px" }}
                 src={barber.avatar_link}
               />

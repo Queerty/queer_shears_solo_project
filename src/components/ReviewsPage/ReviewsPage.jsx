@@ -9,6 +9,7 @@ import { useHistory } from "react-router";
 import Rating from "@material-ui/lab/Rating";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import { Avatar } from "@material-ui/core";
 
 function ReviewPage() {
   const user = useSelector((store) => store.user);
@@ -60,7 +61,7 @@ function ReviewPage() {
           }}
         />
       </Box>
-      <img width="300px" src={barber.avatar_link} />
+      <Avatar width="300px" src={barber.avatar_link} />
       <p>{barber.address}</p>
       <label> Tell us about your experience: </label>
 

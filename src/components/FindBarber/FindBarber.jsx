@@ -60,6 +60,7 @@ function BarberList() {
             <h4>{barber.pronouns}</h4>
             <Avatar
               alt={barber.full_name}
+              className="avatar"
               style={{ height: "300px", width: "300px", alignItems: "center" }}
               src={barber.avatar_link}
               onClick={() => onBarberProfile(barber.id)}

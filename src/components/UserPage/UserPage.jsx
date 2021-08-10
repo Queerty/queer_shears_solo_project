@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { Avatar, Box, Button, Paper, Typography } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
 import { useHistory } from "react-router";
+// import CreateIcon from '@material-ui/icons/Create';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
