@@ -17,58 +17,68 @@ function UserPage() {
   const userReviews = useSelector((store) => store.reviews.userReviews);
 
   console.log(userReviews, "THIS IS THE LOG FOR USER REVIEWS");
-  
+
   const handleEdit = (response) => {
     event.preventDefault();
     dispatch({
-        type: "SET_CURRENT_REVIEW",
-        payload: {response}
-    })
+      type: "SET_CURRENT_REVIEW",
+      payload: { response },
+    });
 
-    history.push(`/reviews/${response.id}`)
-  }
+    history.push(`/reviews/${response.id}`);
+  };
 
   const handleDelete = (id) => {
     if (confirm("Are you sure you want to delete your review?")) {
-        console.log("This is the id from the delete click:", id)
+      console.log("This is the id from the delete click:", id);
       dispatch({
-          type: "DELETE_REVIEW",
-          payload: id
-      })
+        type: "DELETE_REVIEW",
+        payload: id,
+      });
     }
-  }
+  };
 
   return (
     <div className="container">
       <h1>Your Profile</h1>
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
-      <Avatar src={user.avatar_link} style={{ height: '300px', width: '300px' }} />
+      <Avatar
+        src={user.avatar_link}
+        style={{ height: "300px", width: "300px" }}
+      />
       <p>{user.full_name}</p>
       <p>{user.pronouns}</p>
       <div>
-        {userReviews && userReviews.length > 0 ?
+        {userReviews && userReviews.length > 0 ? (
           userReviews.map((review) => {
-          return (
-            <>
-            <Paper>
-              <Avatar src={review.avatar_link} />
-              <Rating name="user-reviews" value={review.rating} />
-              <h3>{review.full_name}</h3>
+            return (
+              <>
+                <Paper>
+                  <Avatar src={review.avatar_link} />
+                  <Rating name="user-reviews" value={review.rating} />
+                  <h3>{review.full_name}</h3>
 
-              <h4>{review.review}</h4>
-              <Button onClick={() => handleEdit(review.review_id)}>edit</Button>
-              <Button onClick={() => handleDelete(review.review_id)}>delete</Button>
-              </Paper>
-            </>
-          );
-        }): <span></span>}
+                  <h4>{review.review}</h4>
+                  <Button onClick={() => handleEdit(review.review_id)}>
+                    edit
+                  </Button>
+                  <Button onClick={() => handleDelete(review.review_id)}>
+                    delete
+                  </Button>
+                </Paper>
+              </>
+            );
+          })
+        ) : (
+          <span></span>
+        )}
       </div>
 
       <LogOutButton className="btn" />
     </div>
   );
 }
-  
+
 // this allows us to use <App /> in index.js
 export default UserPage;

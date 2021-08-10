@@ -1,39 +1,39 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import {
   HashRouter as Router,
   Route,
   Redirect,
   Switch,
-} from 'react-router-dom';
+} from "react-router-dom";
 
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 
-import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
+import Nav from "../Nav/Nav";
+import Footer from "../Footer/Footer";
 
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
-import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
-import LandingPage from '../LandingPage/LandingPage';
-import LoginPage from '../LoginPage/LoginPage';
-import RegisterPage from '../RegisterPage/RegisterPage';
-import AddBarberForm from '../AddBarber/AddBarber';
-import ReviewPage from '../ReviewsPage/ReviewsPage';
+import AboutPage from "../AboutPage/AboutPage";
+import UserPage from "../UserPage/UserPage";
+import InfoPage from "../InfoPage/InfoPage";
+import LandingPage from "../LandingPage/LandingPage";
+import LoginPage from "../LoginPage/LoginPage";
+import RegisterPage from "../RegisterPage/RegisterPage";
+import AddBarberForm from "../AddBarber/AddBarber";
+import ReviewPage from "../ReviewsPage/ReviewsPage";
 
-import './App.css';
-import BarberProfile from '../BarberProfile/BarberProfile';
-import BarberList from '../FindBarber/FindBarber';
-import ConfirmationAdd from '../ConfirmationAdd/ConfirmationAdd';
-import EditReview from '../EditReview/EditReview';
-import Map from '../Map/Map';
+import "./App.css";
+import BarberProfile from "../BarberProfile/BarberProfile";
+import BarberList from "../FindBarber/FindBarber";
+import ConfirmationAdd from "../ConfirmationAdd/ConfirmationAdd";
+import EditReview from "../EditReview/EditReview";
+import Map from "../Map/Map";
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({ type: 'FETCH_USER' });
+    dispatch({ type: "FETCH_USER" });
   }, [dispatch]);
 
   return (
@@ -60,10 +60,7 @@ function App() {
             <BarberList />
           </Route>
 
-          <ProtectedRoute
-            exact
-            path="/AddReview"
-          >
+          <ProtectedRoute exact path="/AddReview">
             <ReviewPage />
           </ProtectedRoute>
 
@@ -71,32 +68,32 @@ function App() {
             //shows baber page at all times
             exact
             path="/AddBarber"
-           >
-            <AddBarberForm/> 
-           </ProtectedRoute>
-           <Route
+          >
+            <AddBarberForm />
+          </ProtectedRoute>
+          <Route
             //shows baber page at all times
             exact
             path="/ConfirmationAdd"
-           >
-            <ConfirmationAdd/> 
-           </Route>
-           <Route
+          >
+            <ConfirmationAdd />
+          </Route>
+          <Route
             //shows baber page at all times
             exact
             path="/profile/:id"
-           >
-            <BarberProfile/> 
-           </Route>
+          >
+            <BarberProfile />
+          </Route>
 
-           <Route
+          <Route
             //shows edit review
             exact
             path="/reviews/:id"
-           >
-            <EditReview/> 
-           </Route>
-           {/* <Route
+          >
+            <EditReview />
+          </Route>
+          {/* <Route
             //shows baber page at all times
             exact
             path="/barber/profile/"
@@ -148,7 +145,6 @@ function App() {
             <RegisterPage />
           </ProtectedRoute>
 
-        
           <ProtectedRoute
             // with authRedirect:
             // - if logged in, redirects to "/user"

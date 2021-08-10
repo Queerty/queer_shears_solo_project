@@ -104,7 +104,6 @@ function AddBarberForm() {
       default:
         break;
     }
-   
   };
 
   const handleSubmit = () => {
@@ -130,7 +129,6 @@ function AddBarberForm() {
     });
 
     history.push(`/ConfirmationAdd`);
-
   };
   return (
     <form className="formPanel">
@@ -370,25 +368,27 @@ function AddBarberForm() {
         </label>
       </div>
       <div>
-      <FormControl component="fieldset">
-      <FormLabel component="legend">User Role:</FormLabel>
-      <RadioGroup aria-label="position" row>
-      <FormControlLabel
-          value="client"
-          control={<Radio/>} label="I am a client of this stylist/barber"
-          onChange={(event) =>
-            setBarber({ ...barber, role: event.target.value })
-          }
-        />
-      <FormControlLabel
-          value="barber"
-          control={<Radio/>} label="I am this stylist/barber"
-          onChange={(event) =>
-            setBarber({ ...barber, role: event.target.value })
-          }
-        />
-         </RadioGroup>
-    </FormControl>
+        <FormControl component="fieldset">
+          <FormLabel component="legend">User Role:</FormLabel>
+          <RadioGroup aria-label="position" row>
+            <FormControlLabel
+              value="client"
+              control={<Radio />}
+              label="I am a client of this stylist/barber"
+              onChange={(event) =>
+                setBarber({ ...barber, role: event.target.value })
+              }
+            />
+            <FormControlLabel
+              value="barber"
+              control={<Radio />}
+              label="I am this stylist/barber"
+              onChange={(event) =>
+                setBarber({ ...barber, role: event.target.value })
+              }
+            />
+          </RadioGroup>
+        </FormControl>
       </div>
       <div>
         <input
