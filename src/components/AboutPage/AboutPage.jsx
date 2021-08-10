@@ -2,10 +2,10 @@
 // It doesn't have local state,
 // It doesn't dispatch any redux actions or display any part of redux state
 // or even care what the redux state is'
-
+import "./AboutPage.css"
 function AboutPage() {
   return (
-    <p>
+    <p className="about">
       Queer Shears is an application for the LGBTQ+ community to connect users
       to affirming barbers and stylists. Users can browse stylist profiles or
       leave reviews. Stylists can create profiles in the app making it easy for

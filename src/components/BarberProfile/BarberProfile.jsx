@@ -8,6 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import "./BarberProfile.css";
+import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 // import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 
 function BarberProfile() {
@@ -44,7 +45,6 @@ function BarberProfile() {
   }, [params.id]);
   console.log(
     barberReview,
-    "@@@@@@()*#@)(&%)(#!&%)(!&()@#*)(*#@()_*#@(_%BARBER REVIEW"
   );
 
   useEffect(() => {
@@ -112,7 +112,7 @@ function BarberProfile() {
           <Grid container spacing={3}>
             <Grid item xs={9}>
               <Avatar
-                className="avatar"
+                className="avatarProfile"
                 alt={barber.full_name}
                 style={{ height: "300px", width: "300px" }}
                 src={barber.avatar_link}
@@ -122,7 +122,7 @@ function BarberProfile() {
 
             <Grid item xs={12}>
               {/* <h1>{barber.id}</h1> */}
-              <Paper id="barberName">
+              <Paper id="barberName"> <Button><FavoriteBorderOutlinedIcon/>favorite</Button>
                 <Typography align="left">{barber.full_name}</Typography>
                 <Typography align="left">{barber.pronouns}</Typography>
                 <Typography align="left"> {barber.phone}</Typography>
