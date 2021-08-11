@@ -42,8 +42,8 @@ function UserPage() {
 
   return (
     <div className="container">
-      <h1>Your Profile</h1>
-      <h2>Welcome, {user.username}!</h2>
+      <h2>Your Profile</h2>
+      <h4>Welcome, {user.username}!</h4>
       <p>Your ID is: {user.id}</p>
       <Avatar
         src={user.avatar_link}
@@ -66,7 +66,7 @@ function UserPage() {
        </Paper>
        </>
       ))) : (<span></span>)}
-      <p> My Reviews <b>({userReviews.length})</b></p>
+      <h3> My Reviews <b>({userReviews.length})</b></h3>
       <div>
         {userReviews && userReviews.length > 0 ? (
           userReviews.map((review) => {
