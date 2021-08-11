@@ -53,12 +53,11 @@ function UserPage() {
       <p>{user.full_name}</p>
       <p>{user.pronouns}</p>
 
-      <p>My Favorite Barbers</p>
+      <p id="favTitle"> Favorite Barbers <FavoriteIcon style={{ display: "inline-flex" }}/></p>
       {userFavorites && userFavorites.length > 0 ? (
         userFavorites.map((favorite) => (
         <>
         <Paper className="favoriteCards">
-        <FavoriteIcon/>
         <Avatar src={favorite.avatar_link}/> 
        <div> {favorite.full_name} </div>
        <p>{favorite.pronouns}</p>
