@@ -86,6 +86,19 @@ function BarberProfile() {
     }
   };
 
+  const handleFavorite = () => {
+    dispatch({
+      type: "POST_FAVORITE",
+      payload: {
+        full_name: barber.full_name,
+        pronouns: barber.pronouns,
+        phone: barber.phone,
+        website: barber.website,
+        avatar_link: barber.avatar_link,
+      }
+    })
+  }
+
   const styleObj = {
     fontSize: 22,
     textAlign: "left",
@@ -112,7 +125,7 @@ function BarberProfile() {
 
             <Grid item xs={12}>
               {/* <h1>{barber.id}</h1> */}
-              <Paper id="barberName"> <Button><FavoriteBorderOutlinedIcon/>favorite</Button>
+              <Paper id="barberName"> <Button onClick={handleFavorite}><FavoriteBorderOutlinedIcon/>favorite</Button>
                 <Typography align="left">{barber.full_name}</Typography>
                 <Typography align="left">{barber.pronouns}</Typography>
                 <Typography align="left"> {barber.phone}</Typography>
@@ -130,9 +143,7 @@ function BarberProfile() {
                 </a>
                 <Typography align="left"> {barber.address}</Typography>
                 
-                
-    
-
+              
                 <Box component="fieldset" mb={3} borderColor="transparent">
                   <Typography component="legend">
                     {" "}
@@ -170,7 +181,7 @@ function BarberProfile() {
                           </Box>
                           <div>
                             {" "}
-                            {response.review} {response.user_id}
+                            {response.review} 
                           </div>
                           {/* <div> date: {response.date}</div> */}
                           {user.id == response.user_id && (

@@ -5,6 +5,10 @@ margin-left: 10px;
 .userPaper{
     padding: 10px;
 }
-Rating{
-    margin: 4px;
+.favoriteCards{
+    padding: 20px;
+    width: 400px;
+    height: 200px;
+    margin: 20px;
+    
 }

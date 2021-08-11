@@ -7,6 +7,7 @@ import Rating from "@material-ui/lab/Rating";
 import { useHistory } from "react-router";
 import "./UserPage.css";
 import CreateIcon from '@material-ui/icons/Create';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -14,22 +15,13 @@ function UserPage() {
   const dispatch = useDispatch();
   const history = useHistory();
   useEffect(() => {
-    dispatch({ type: "FETCH_USER_REVIEWS", payload: user.id });
+    dispatch({ type: "FETCH_USER_REVIEWS", payload: user.id })
+    dispatch({ type: "FETCH_FAVORITES", payload: user.id })
   }, []);
   const userReviews = useSelector((store) => store.reviews.userReviews);
-
+  const userFavorites = useSelector((store) => store.favorites.userFavorites);
   console.log(userReviews, "THIS IS THE LOG FOR USER REVIEWS");
-
-  const handleEdit = (response) => {
-    event.preventDefault();
-    dispatch({
-      type: "SET_CURRENT_REVIEW",
-      payload: { response },
-    });
-
-    history.push(`/reviews/${response.id}`);
-  };
-
+  console.log(userFavorites, "THESE ARE THE FAVORITES####")
   const handleDelete = (id) => {
     if (confirm("Are you sure you want to delete your review?")) {
       console.log("This is the id from the delete click:", id);
@@ -60,6 +52,21 @@ function UserPage() {
       <Button onClick={updateProfile}>edit profile<CreateIcon/></Button>
       <p>{user.full_name}</p>
       <p>{user.pronouns}</p>
+
+      <p>My Favorite Barbers</p>
+      {userFavorites && userFavorites.length > 0 ? (
+        userFavorites.map((favorite) => (
+        <>
+        <Paper className="favoriteCards">
+        <FavoriteIcon/>
+        <Avatar src={favorite.avatar_link}/> 
+       <div> {favorite.full_name} </div>
+       <p>{favorite.pronouns}</p>
+       <p>{favorite.phone}</p>
+       <a href={favorite.website}>{favorite.website}</a>
+       </Paper>
+       </>
+      ))) : (<span></span>)}
       <p> My Reviews <b>({userReviews.length})</b></p>
       <div>
         {userReviews && userReviews.length > 0 ? (
@@ -72,9 +79,9 @@ function UserPage() {
                   <h3>{review.full_name}</h3>
 
                   <h4>{review.review}</h4>
-                  <Button onClick={() => handleEdit(review)}>
+                  {/* <Button onClick={() => handleEdit(review)}>
                     edit
-                  </Button>
+                  </Button> */}
                   <Button onClick={() => handleDelete(review.review_id)}>
                     delete
                   </Button>

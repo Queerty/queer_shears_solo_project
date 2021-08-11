@@ -29,6 +29,8 @@ console.log("CURRENT REVIEW VALUE:", currentReview);
       }
     });
     history.push(`/profile/${barber.id}`)
+   
+
 
   }
 

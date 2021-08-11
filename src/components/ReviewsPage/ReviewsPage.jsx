@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState} from "react";
 import { useEffect } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
@@ -12,17 +12,12 @@ import Box from "@material-ui/core/Box";
 import { Avatar } from "@material-ui/core";
 
 function ReviewPage() {
-  const user = useSelector((store) => store.user);
-  const barber = useSelector((store) => store.barbers.barberProfile);
-  const history = useHistory();
-  console.log(
-    "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% barber log in reviews page",
-    barber
-  );
+const user = useSelector((store) => store.user);
+const barber = useSelector(store => store.barbers.barberProfile);
+const history = useHistory();
 
   const [value, setValue] = React.useState(2);
   const [reviewValue, setReviewValue] = useState("");
-  console.log("@@@@@@@REQ DOT USER!!!!!!", user.id);
 
   const handleSubmit = () => {
     event.preventDefault();
@@ -35,7 +30,7 @@ function ReviewPage() {
         barber_id: barber.id,
         user_id: Number(user.id),
         location_id: 4,
-        review: reviewValue,
+        review: reviewValue
       },
     })
       .then((response) => {
@@ -50,9 +45,7 @@ function ReviewPage() {
   return (
     <div>
       <Box component="fieldset" mb={3} borderColor="transparent">
-        <Typography component="legend">
-          Rate your experience with {barber.full_name}
-        </Typography>
+        <Typography component="legend">Rate your experience with {barber.full_name}</Typography>
         <Rating
           name="simple-controlled"
           value={value}
@@ -61,15 +54,14 @@ function ReviewPage() {
           }}
         />
       </Box>
-      <Avatar width="300px" src={barber.avatar_link} />
+      <Avatar src={barber.avatar_link} alt={barber.full_name} style={{ height: "200px", width: "200px" }}/>
       <p>{barber.address}</p>
-      <label> Tell us about your experience: </label>
-
+        <label> Tell us about your experience: </label>
+         
       <textarea
-        value={reviewValue}
-        onChange={(evt) => setReviewValue(evt.target.value)}
-      ></textarea>
-      <div></div>
+      value={reviewValue}
+      onChange={(evt) => setReviewValue(evt.target.value)}></textarea>
+<div></div>
       <button onClick={handleSubmit}>Submit</button>
     </div>
   );
