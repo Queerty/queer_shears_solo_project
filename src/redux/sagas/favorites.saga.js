@@ -4,6 +4,7 @@ import axios from "axios";
 function* favoritesSaga() {
     yield takeEvery("FETCH_FAVORITES", fetchFavorites);
     yield takeEvery("POST_FAVORITE", addFavorite);
+    yield takeEvery("DELETE_FAVORITE", deleteFavorite);
   }
 
 function* fetchFavorites(action) {
@@ -21,6 +22,15 @@ function* addFavorite(action) {
         yield put({ type: "FETCH_FAVORITES"});
     }
 
+    function* deleteFavorite(action) {
+        try {
+          console.log("here is the problem: action.payload", action.payload)
+          yield axios.delete(`/api/favorites/${action.payload}`);
+          yield put({ type: "FETCH_FAVORITES" });
+        } catch {
+          console.log("Error when deleting favorite");
+        }
+      }
 
 
   export default favoritesSaga;

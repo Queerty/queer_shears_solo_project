@@ -9,6 +9,8 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import "./BarberProfile.css";
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+
 
 function BarberProfile() {
   const barber = useSelector((store) => store.barbers.barberProfile);
@@ -18,6 +20,8 @@ function BarberProfile() {
   const barberReview = useSelector((store) => store.reviews.barberReviews);
   const user = useSelector((store) => store.user);
   const rating = useSelector((store) => store.reviews.barberRating);
+  const userFavorites = useSelector((store) => store.favorites.userFavorites);
+  const [fav, setFav] = React.useState(false);
 
   console.log(rating, "THIS IS THE AVERAGE RATING I THINK********");
 
@@ -87,6 +91,8 @@ function BarberProfile() {
   };
 
   const handleFavorite = () => {
+    setFav(!fav)
+    if(fav == true){
     dispatch({
       type: "POST_FAVORITE",
       payload: {
@@ -96,7 +102,14 @@ function BarberProfile() {
         website: barber.website,
         avatar_link: barber.avatar_link,
       }
-    })
+    })}else {
+      console.log("have to delete this");
+      dispatch({
+        type: "DELETE_FAVORITE",
+        payload: barber.full_name
+    });
+    
+    }
   }
 
   const styleObj = {
@@ -125,7 +138,10 @@ function BarberProfile() {
 
             <Grid item xs={12}>
               {/* <h1>{barber.id}</h1> */}
-              <Paper id="barberName"> <Button onClick={handleFavorite}><FavoriteBorderOutlinedIcon/>favorite</Button>
+              <Paper id="barberName"> 
+             {fav &&
+              <Button onClick={handleFavorite}><FavoriteBorderOutlinedIcon/>favorite</Button>}
+              {!fav && <Button onClick={handleFavorite}><FavoriteIcon/>favorite</Button>}
                 <Typography align="left">{barber.full_name}</Typography>
                 <Typography align="left">{barber.pronouns}</Typography>
                 <Typography align="left"> {barber.phone}</Typography>
@@ -141,15 +157,15 @@ function BarberProfile() {
                   {" "}
                   {barber.instagram}
                 </a>
-                <Typography align="left"> {barber.address}</Typography>
-                
+                <Typography align="left"> {barber.address}</Typography>              
               
                 <Box component="fieldset" mb={3} borderColor="transparent">
                   <Typography component="legend">
                     {" "}
                     average user rating:
                   </Typography>
-                  <Rating name="barber-avg-rating" value={rating.avg} />
+                  {rating.avg &&
+                  <Rating name="barber-avg-rating" value={rating.avg} />}
                 </Box>
               </Paper>
             </Grid>

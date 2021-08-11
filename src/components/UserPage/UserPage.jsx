@@ -1,8 +1,9 @@
 import React from "react";
 import LogOutButton from "../LogOutButton/LogOutButton";
 import { useDispatch, useSelector } from "react-redux";
+import { makeStyles } from '@material-ui/core/styles';
 import { useEffect } from "react";
-import { Avatar, Box, Button, Paper, Typography } from "@material-ui/core";
+import { Avatar, Box, Button, Paper, Typography, Card, CardContent } from "@material-ui/core";
 import Rating from "@material-ui/lab/Rating";
 import { useHistory } from "react-router";
 import "./UserPage.css";
@@ -11,6 +12,25 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
+
+  const useStyles = makeStyles({
+    root: {
+      minWidth: 275,
+    },
+    bullet: {
+      display: 'inline-block',
+      margin: '0 2px',
+      transform: 'scale(0.8)',
+    },
+    title: {
+      fontSize: 14,
+    },
+    pos: {
+      marginBottom: 12,
+    },
+  });
+  const classes = useStyles();
+
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -57,13 +77,15 @@ function UserPage() {
       {userFavorites && userFavorites.length > 0 ? (
         userFavorites.map((favorite) => (
         <>
-        <Paper className="favoriteCards">
+        <Card className="favoriteCards">
+          <CardContent>
         <Avatar src={favorite.avatar_link}/> 
-       <div> {favorite.full_name} </div>
-       <p>{favorite.pronouns}</p>
-       <p>{favorite.phone}</p>
+       <Typography> {favorite.full_name} </Typography>
+       <Typography>{favorite.pronouns}</Typography>
+       <Typography>{favorite.phone}</Typography>
        <a href={favorite.website}>{favorite.website}</a>
-       </Paper>
+       </CardContent>
+       </Card>
        </>
       ))) : (<span></span>)}
       <h3> My Reviews <b>({userReviews.length})</b></h3>

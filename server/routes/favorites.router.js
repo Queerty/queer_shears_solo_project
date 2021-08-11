@@ -1,6 +1,9 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 /**
  * GET user favorites
@@ -42,6 +45,23 @@ const avatar_link= favorite.avatar_link;
     })
     .catch((error) => {
       console.log(`Error adding new review`, error);
+      res.sendStatus(500);
+    });
+});
+
+router.delete("/:id", rejectUnauthenticated, (req, res) => {
+  
+  const barber = req.params.id;
+
+  console.log("IN THE FAVORITE DELETE FUNCTION:", barber);
+  const query = `DELETE FROM "favorite_barbers"
+                 WHERE "full_name" =$1 AND "user_id" = $2;`;
+
+  pool
+    .query(query, [barber, req.user.id])
+    .then((results) => res.sendStatus(202))
+    .catch((error) => {
+      console.log("Error deleting review: ", error);
       res.sendStatus(500);
     });
 });
