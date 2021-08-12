@@ -5,6 +5,8 @@
 import "./AboutPage.css"
 function AboutPage() {
   return (
+    <>
+    <h1 id="aboutTitle">Find LGBTQIA+ affirming barbers & stylists</h1>
     <p className="about">
       Queer Shears is an application for the LGBTQ+ community to connect users
       to affirming barbers and stylists. Users can browse stylist profiles or
@@ -19,6 +21,8 @@ function AboutPage() {
       their reviews. Data from clients and stylists update in a database to
       provide the most recent and relevant information.
     </p>
+    <img id="background" src="images/background.png"/>
+    </>
   );
 }
 

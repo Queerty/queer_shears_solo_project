@@ -125,10 +125,9 @@ router.get("/rating/:id", (req, res) => {
 
 router.get("/users/:id", (req, res) => {
   const userId = req.params.id;
-  const query = `SELECT "user".id as user_id, "reviews".id as review_id, "reviews".rating, "reviews".review, "barbers".full_name as "barber_name", "barbers".avatar_link FROM "user"
-  JOIN "reviews" ON "reviews".user_id = user_id
-  JOIN "barbers" ON "reviews".barber_id = "barbers".id
-  WHERE "user".id=$1;`;
+  const query = `SELECT "reviews".id as review_id, "reviews".rating, "reviews".review, "barbers".full_name as "barber_name", "barbers".avatar_link FROM reviews
+  JOIN barbers ON reviews.barber_id = barbers.id
+  WHERE user_id=$1;`;
   pool
     .query(query, [userId])
     .then((result) => {

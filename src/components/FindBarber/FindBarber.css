@@ -17,3 +17,10 @@ h2:hover{
 .MuiPaper-root{
 display: 'flex'
 }
+a:link{
+    color: #44544e;
+    text-decoration: underline;
+}
+a:visited{
+    color:rgba(0, 0, 0, 0.517)
+}

@@ -7,7 +7,8 @@ function ConfirmationAdd() {
   return (
     <>
       <h1> Thanks for contributing to Queer Shears!</h1>
-      <p>It can take 5-7 business days to approve your submission</p>
+      <p>Submissions are reviewed by our admins to ensure correct information.</p>
+      <p>Posts with inaccurate information, or duplicate info will be removed.</p>
       <button type="button" onClick={handleBrowse}>
         Browse Barbers
       </button>
