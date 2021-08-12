@@ -9,6 +9,7 @@ import { FormGroup } from "@material-ui/core";
 import { Radio, RadioGroup } from "@material-ui/core";
 import { Checkbox } from "@material-ui/core";
 import { useHistory } from "react-router";
+import "./AddBarber.css";
 
 function AddBarberForm() {
   const dispatch = useDispatch();
@@ -51,7 +52,7 @@ function AddBarberForm() {
   const [barber, setBarber] = useState({
     fullName: "",
     pronouns: "",
-    // specialties: specialties,
+    specialties:"",
     phoneNumber: "",
     website: "",
     facebook: "",
@@ -112,7 +113,7 @@ function AddBarberForm() {
     console.log("in handle submit spec*************", specialties);
     dispatch({
       type: "POST_BARBER",
-      payload: { barber: barber, specialties: specialties },
+      payload: { barber: barber},
     });
 
     setBarber({
@@ -162,7 +163,7 @@ function AddBarberForm() {
           />
         </label>
       </div>
-      <div>
+      {/* <div>
         <FormControl component="fieldset">
           <FormLabel component="legend">Specializes in:</FormLabel>
           <FormGroup aria-label="position" row>
@@ -203,8 +204,8 @@ function AddBarberForm() {
               }
               label="Transformation Cut"
               labelPlacement="end"
-            />
-            <FormControlLabel
+            /> */}
+            {/* <FormControlLabel
               value="Long"
               control={
                 <Checkbox
@@ -282,6 +283,20 @@ function AddBarberForm() {
             />
           </FormGroup>
         </FormControl>
+      </div> */}
+      <div>
+        <label htmlFor="specialties">
+          Specialties:
+          <input
+            type="text"
+            name="specialties"
+            value={barber.specialties}
+            required
+            onChange={(event) =>
+              setBarber({ ...barber, specialties: event.target.value })
+            }
+          />
+        </label>
       </div>
       <div>
         <label htmlFor="phoneNumber">

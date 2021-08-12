@@ -1,9 +1,10 @@
-import { Avatar } from "@material-ui/core";
+import { Avatar, Chip } from "@material-ui/core";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import "./FindBarber.css";
 import { makeStyles } from "@material-ui/core/styles";
+import Search from "../Search/Search";
 
 function BarberList() {
   useEffect(() => {
@@ -51,6 +52,7 @@ function BarberList() {
   return (
     <main>
       <h1>Barber List</h1>
+      {/* <Search /> */}
       {barbers.map((barber) => {
         return (
           <div key={barber.id}>
@@ -66,10 +68,10 @@ function BarberList() {
               onClick={() => onBarberProfile(barber.id)}
             />
             <p>Phone: {barber.phone}</p>
-            <p>Website: {barber.website}</p>
-            <p>Socials:</p>
-            <p>Address: {barber.address}</p>
-            {/* <p> {getRating(barber.id)}{rating.avg}</p> */}
+            <a href={barber.website}>Check out {barber.full_name}'s website</a>
+            {barber.specialties &&
+            <p>Specialties: {barber.specialties}</p>}
+            <p>Address: {barber.address} </p>
           </div>
         );
       })}
