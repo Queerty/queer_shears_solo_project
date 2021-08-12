@@ -17,17 +17,28 @@ function UserPage() {
     root: {
       minWidth: 275,
     },
-    bullet: {
-      display: 'inline-block',
-      margin: '0 2px',
-      transform: 'scale(0.8)',
+    editbtn: {
+      marginTop: 48,
     },
     title: {
-      fontSize: 14,
+      fontSize: 20,
+      display: 'inline-block'
     },
     pos: {
       marginBottom: 12,
+      fontSize: 14,
+  
     },
+    icon: {
+      marginLeft: 16,
+    },
+    phone: {
+     justifyContent: 'right'
+      
+    },
+    website: {
+     
+    }
   });
   const classes = useStyles();
 
@@ -63,13 +74,12 @@ function UserPage() {
   return (
     <div className="container">
       <h2>Your Profile</h2>
-      <h4>Welcome, {user.username}!</h4>
-      <p>Your ID is: {user.id}</p>
+     
       <Avatar
         src={user.avatar_link}
         style={{ height: "300px", width: "300px" }}
       />
-      <Button onClick={updateProfile}>edit profile<CreateIcon/></Button>
+      <Button className={classes.editbtn} variant="outlined" onClick={updateProfile}>edit profile<CreateIcon className={classes.icon}/></Button>
       <p>{user.full_name}</p>
       <p>{user.pronouns}</p>
 
@@ -80,10 +90,10 @@ function UserPage() {
         <Card className="favoriteCards">
           <CardContent>
         <Avatar src={favorite.avatar_link}/> 
-       <Typography> {favorite.full_name} </Typography>
-       <Typography>{favorite.pronouns}</Typography>
-       <Typography>{favorite.phone}</Typography>
-       <a href={favorite.website}>{favorite.website}</a>
+       <Typography className={classes.title}> {favorite.full_name} </Typography>
+       <Typography className={classes.pos}>{favorite.pronouns}</Typography>
+       <Typography className={classes.phone}>{favorite.phone}</Typography>
+       <a className={classes.website} href={favorite.website}>{favorite.website}</a>
        </CardContent>
        </Card>
        </>
