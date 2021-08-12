@@ -136,6 +136,7 @@ function AddBarberForm() {
   }
   };
   return (
+    <div>
     <form className="formPanel">
       <h2>Add Barber/Stylist</h2>
 
@@ -304,7 +305,7 @@ function AddBarberForm() {
       </div>
       <div>
         <label htmlFor="phoneNumber">
-          Phone
+          Phone #
           <input
             type="text"
             name="phoneNumber"
@@ -419,6 +420,7 @@ function AddBarberForm() {
         />
       </div>
     </form>
+    </div>
   );
 }
 

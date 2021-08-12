@@ -17,9 +17,9 @@ function AboutPage() {
       to a gender expression that doesn’t fall into a matched feminine or
       masculine binary. Some spaces welcome expression and feel safe. This app
       connects the LGBTQ+ community to these safe spaces for their next haircut.
-      Users must make an account to add favorite barbers to their list and post
+      {/* Users must make an account to add favorite barbers to their list and post
       their reviews. Data from clients and stylists update in a database to
-      provide the most recent and relevant information.
+      provide the most recent and relevant information. */}
     </p>
     <img id="background" src="images/background.png"/>
     </>

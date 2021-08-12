@@ -10,6 +10,7 @@ import Rating from "@material-ui/lab/Rating";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { Avatar } from "@material-ui/core";
+import "./ReviewsPage.css"
 
 function ReviewPage() {
 const user = useSelector((store) => store.user);
@@ -43,7 +44,7 @@ const history = useHistory();
   };
 
   return (
-    <div>
+    <div id="reviewPage">
       <Box component="fieldset" mb={3} borderColor="transparent">
         <Typography component="legend">Rate your experience with {barber.full_name}</Typography>
         <Rating
@@ -56,7 +57,8 @@ const history = useHistory();
       </Box>
       <Avatar src={barber.avatar_link} alt={barber.full_name} style={{ height: "200px", width: "200px" }}/>
       <p>{barber.address}</p>
-        <label> Tell us about your experience: </label>
+        <label> Tell us about your experience </label>
+        <br></br>
          
       <textarea
       value={reviewValue}

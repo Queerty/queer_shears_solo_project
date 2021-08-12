@@ -1,0 +1,6 @@
+input{
+    width: 90%;
+}
+#backImg{
+    background-image: url(./background.png);
+}
