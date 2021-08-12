@@ -1,8 +1,19 @@
-main{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 30%;
-    align-self: center;
+#barberList{
+    margin-bottom: 40px;
+    margin-left: 46%;
 
+}
+h2:hover{
+    cursor: pointer;
+}
+.avatar:hover{
+    cursor: pointer;
+}
+
+.MuiAvatar-root{
+    justify-content: center;
+    margin: 20px;
+}
+.MuiPaper-root{
+display: 'flex'
 }

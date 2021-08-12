@@ -24,7 +24,7 @@ const {
   });
 
 //POST new favorite to db after submit
-router.post("/", (req, res) => {
+router.post("/", rejectUnauthenticated, (req, res) => {
 console.log("in FAVORITE router");
   let favorite = req.body;
   console.log(`Adding favorite`, favorite);

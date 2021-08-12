@@ -109,6 +109,9 @@ function AddBarberForm() {
 
   const handleSubmit = () => {
     event.preventDefault();
+    if(barber.fullName == ""){
+      alert("Please fill out required Full Name field")
+    }else{
     console.log("in handle submit barber*************", barber);
     console.log("in handle submit spec*************", specialties);
     dispatch({
@@ -130,6 +133,7 @@ function AddBarberForm() {
     });
 
     history.push(`/ConfirmationAdd`);
+  }
   };
   return (
     <form className="formPanel">
@@ -137,7 +141,7 @@ function AddBarberForm() {
 
       <div>
         <label htmlFor="fullName">
-          Full Name:
+          Full Name
           <input
             type="text"
             name="fullName"
@@ -151,7 +155,7 @@ function AddBarberForm() {
       </div>
       <div>
         <label htmlFor="pronouns">
-          Pronouns:
+          Pronouns
           <input
             type="text"
             name="pronouns"
@@ -286,7 +290,7 @@ function AddBarberForm() {
       </div> */}
       <div>
         <label htmlFor="specialties">
-          Specialties:
+          Specialties
           <input
             type="text"
             name="specialties"
@@ -300,7 +304,7 @@ function AddBarberForm() {
       </div>
       <div>
         <label htmlFor="phoneNumber">
-          Phone:
+          Phone
           <input
             type="text"
             name="phoneNumber"
@@ -314,7 +318,7 @@ function AddBarberForm() {
       </div>
       <div>
         <label htmlFor="website">
-          Website:
+          Website
           <input
             type="text"
             name="website"
@@ -328,7 +332,7 @@ function AddBarberForm() {
       </div>
       <div>
         <label htmlFor="facebook">
-          Facebook:
+          Facebook
           <input
             type="text"
             name="facebook"
@@ -342,7 +346,7 @@ function AddBarberForm() {
       </div>
       <div>
         <label htmlFor="instagram">
-          Instagram:
+          Instagram
           <input
             type="text"
             name="instagram"
@@ -356,7 +360,7 @@ function AddBarberForm() {
       </div>
       <div>
         <label htmlFor="address">
-          Address:
+          Address
           <input
             type="text"
             name="address"
@@ -370,7 +374,7 @@ function AddBarberForm() {
       </div>
       <div>
         <label htmlFor="avatar_link">
-          Profile Picture url:
+          Profile Picture url
           <input
             type="text"
             name="avatar_link"

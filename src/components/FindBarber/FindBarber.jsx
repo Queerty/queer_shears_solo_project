@@ -1,4 +1,4 @@
-import { Avatar, Chip } from "@material-ui/core";
+import { Avatar, Card, CardMedia, Chip, Grid } from "@material-ui/core";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -20,17 +20,28 @@ function BarberList() {
   //material ui
   const useStyles = makeStyles((theme) => ({
     root: {
-      flexGrow: 1,
-    },
-    avatar: {
-      justifyContent: "center",
+      
     },
 
-    paper: {
+    // paper: {
+    //   padding: theme.spacing(2),
+    //   textAlign: "center",
+    //   color: theme.palette.text.secondary,
+    // },
+    barbers: {
+      margin: 20,
+      padding: 20,
+      // display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      justify: 'center',
+      flexGrow: 1,
+      width: "400px",
+      height: "500px",
       padding: theme.spacing(2),
       textAlign: "center",
       color: theme.palette.text.secondary,
-    },
+    }
   }));
   const classes = useStyles();
 
@@ -50,32 +61,52 @@ function BarberList() {
   //         dispatch({type: 'FETCH_BARBER_RATING', payload: barber.id})
   // }
   return (
-    <main>
-      <h1>Barber List</h1>
+    <>
+  
+      <h1 id="barberList">Barber List</h1>
+      <Grid 
+      container 
+      spacing={2}
+      direction="row"
+    justifyContent="center"
+    alignItems="center">
+      
       {/* <Search /> */}
+      
       {barbers.map((barber) => {
         return (
-          <div key={barber.id}>
+          
+            <Grid item key={barber.id} size={200} >
+            <Card className={classes.barbers}>
             <h2 onClick={() => onBarberProfile(barber.id)}>
               {barber.full_name}
             </h2>
             <h4>{barber.pronouns}</h4>
             <Avatar
+            // component="img"
               alt={barber.full_name}
               className="avatar"
-              style={{ height: "300px", width: "300px", alignItems: "center" }}
+              style={{ height: "200px", width: "200px", marginLeft: "100px"}}
               src={barber.avatar_link}
               onClick={() => onBarberProfile(barber.id)}
+              
             />
-            <p>Phone: {barber.phone}</p>
-            <a href={barber.website}>Check out {barber.full_name}'s website</a>
+            <div id="phoneNumber">
+            {/* <a href="tel:">Phone: {barber.phone}</a> */}
+            </div>
+            <br></br>
+            <a href={barber.website}>{barber.website}</a>
+           
             {barber.specialties &&
             <p>Specialties: {barber.specialties}</p>}
             <p>Address: {barber.address} </p>
-          </div>
+            </Card>
+            </Grid>
+          
         );
       })}
-    </main>
+    </Grid>
+    </>
   );
 }
 

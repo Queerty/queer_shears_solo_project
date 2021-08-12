@@ -1,6 +1,10 @@
 const express = require("express");
 const pool = require("../modules/pool");
 const router = express.Router();
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
+
 
 router.get("/", (req, res) => {
   const query = `SELECT * FROM barbers`;
@@ -17,7 +21,7 @@ router.get("/", (req, res) => {
 /**
  * POST route template
  */
-router.post("/", (req, res, next) => {
+router.post("/", rejectUnauthenticated, (req, res, next) => {
   // const full_name= req.body.barber.fullName;
   // const pronouns= req.body.barber.pronouns;
   // const specialties= req.body.barber.specialties;

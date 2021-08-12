@@ -25,6 +25,8 @@ function BarberProfile() {
 
   console.log(rating, "THIS IS THE AVERAGE RATING I THINK********");
 
+
+
   const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
@@ -139,12 +141,14 @@ function BarberProfile() {
             <Grid item xs={12}>
               {/* <h1>{barber.id}</h1> */}
               <Paper id="barberName"> 
+            
              {fav &&
-              <Button onClick={handleFavorite}><FavoriteBorderOutlinedIcon/>favorite</Button>}
-              {!fav && <Button onClick={handleFavorite}><FavoriteIcon/>favorite</Button>}
+              <Button onClick={handleFavorite}>favorite<FavoriteBorderOutlinedIcon/></Button>}
+              {!fav && <Button onClick={handleFavorite}>favorite<FavoriteIcon/></Button>}
+             
                 <Typography align="left">{barber.full_name}</Typography>
                 <Typography align="left">{barber.pronouns}</Typography>
-                <Typography align="left"> {barber.phone}</Typography>
+                <Typography  align="left"> {barber.phone}</Typography>
                 <a href={barber.website} align="left">
                   {" "}
                   {barber.website}

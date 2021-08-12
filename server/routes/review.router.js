@@ -1,4 +1,5 @@
 const express = require("express");
+const { rejectUnauthenticated } = require("../modules/authentication-middleware");
 const router = express.Router();
 const pool = require("../modules/pool");
 
@@ -17,7 +18,7 @@ router.get("/", (req, res) => {
     });
 });
 //POST new review to db after submit
-router.post("/", (req, res) => {
+router.post("/", rejectUnauthenticated, (req, res) => {
   let newReview = req.body;
   console.log(`Adding review`, newReview);
 
@@ -66,7 +67,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", rejectUnauthenticated, (req, res) => {
   const reviewId = req.params.id;
 
   console.log("IN THE DELETE FUNCTION:", reviewId);
@@ -83,7 +84,7 @@ router.delete("/:id", (req, res) => {
 });
 
 //edit user review
-router.put("/", (req, res) => {
+router.put("/", rejectUnauthenticated, (req, res) => {
   const review = req.body;
   console.log(req.body);
   const query = `
