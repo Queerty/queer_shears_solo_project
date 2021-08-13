@@ -123,7 +123,7 @@ function BarberProfile() {
 
   return (
     <>
-      <main>
+      <main id="barberProfile">
         <Button onClick={() => history.push("/barber")}>Back to List</Button>
         <h1> Barber Profile/{barber.full_name}</h1>
         <div className={classes.root}>

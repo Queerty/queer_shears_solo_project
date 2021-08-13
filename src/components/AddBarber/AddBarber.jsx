@@ -136,7 +136,7 @@ function AddBarberForm() {
   }
   };
   return (
-    <div>
+    <div id="aboutBack">
     <form className="formPanel">
       <h2>Add Barber/Stylist</h2>
 

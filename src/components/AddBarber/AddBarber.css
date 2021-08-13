@@ -1,1 +1,5 @@
-
+#aboutBack{
+    background-image: url(./background2.png);
+    /* opacity: 0.8; */
+    background-size: 100%;
+}
