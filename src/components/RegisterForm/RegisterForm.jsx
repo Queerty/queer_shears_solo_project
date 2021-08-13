@@ -31,7 +31,7 @@ function RegisterForm() {
     <section id="backImg">
     <div id="registerBackground">
     <form className="formPanel" onSubmit={registerUser}>
-      <h2>Register User</h2>
+      <h2>Join Queer Shears</h2>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}
